@@ -1,0 +1,147 @@
+# depslib dependency file v1.0
+1719796741 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\main.cpp
+	<iostream>
+	"appManager.h"
+
+1719789041 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\terminal.cpp
+	"Terminal.h"
+	<cstring>
+
+1719789037 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\terminal.h
+	"rlutil.h"
+	<windows.h>
+	<iostream>
+
+1719531533 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1719808543 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\appmanager.cpp
+	"AppManager.h"
+	"Terminal.h"
+	"menuOptions.h"
+	"cuadro.h"
+
+1719716234 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\appmanager.h
+	<iostream>
+	"UsuarioManager.h"
+	"ProductoManager.h"
+
+1719531533 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\menuoptions.h
+	<iostream>
+
+1719807702 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\cuadro.h
+	<iostream>
+	"Terminal.h"
+
+1719807704 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\cuadro.cpp
+	"cuadro.h"
+	<cstring>
+
+1719442446 source:c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\appmanager.cpp
+	"appManager.h"
+	"Terminal.h"
+	"menuOptions.h"
+	"cuadro.h"
+	<cstring>
+	<cmath>
+
+1719442446 c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\appmanager.h
+	<iostream>
+
+1719442446 c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\terminal.h
+	"rlutil.h"
+	<windows.h>
+	<iostream>
+
+1719442446 c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1719442446 c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\menuoptions.h
+	<iostream>
+
+1719442446 c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\cuadro.h
+	<iostream>
+	"Terminal.h"
+
+1719442446 source:c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\cuadro.cpp
+	"cuadro.h"
+	<cstring>
+
+1719442446 source:c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\main.cpp
+	<iostream>
+	"appManager.h"
+	<cstring>
+
+1719442446 source:c:\users\malena.romero\onedrive - neoris\documentos\laboratorio-2---grupo-32\proyectogestionbar-grupo32\terminal.cpp
+	"Terminal.h"
+	<cstring>
+
+1719685908 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\fecha.cpp
+	"Fecha.h"
+	<ctime>
+
+1719632812 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\fecha.h
+	<iostream>
+
+1719687064 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\persona.cpp
+	"Persona.h"
+	<cstring>
+
+1719688194 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\persona.h
+	"Fecha.h"
+
+1719721482 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\usuario.cpp
+	"Usuario.h"
+	<cstring>
+
+1719721421 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\usuario.h
+	<iostream>
+	"Persona.h"
+
+1719805731 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\archivousuario.cpp
+	"ArchivoUsuario.h"
+
+1719805395 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\archivousuario.h
+	<iostream>
+	"Usuario.h"
+
+1719722313 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\usuariomanager.h
+	"Terminal.h"
+	"Usuario.h"
+	"ArchivoUsuario.h"
+
+1719696606 c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\productomanager.h
+	"Terminal.h"
+
+1719697249 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\productomanager.cpp
+	"ProductoManager.h"
+	"menuOptions.h"
+
+1719807211 source:c:\users\bbarrera\documents\github\laboratorio-2---grupo-32\proyectogestionbar-grupo32\usuariomanager.cpp
+	"UsuarioManager.h"
+	"menuOptions.h"
+	"cuadro.h"
+	<cmath>
+
