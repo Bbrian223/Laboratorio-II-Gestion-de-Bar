@@ -1,0 +1,316 @@
+# depslib dependency file v1.0
+1717091312 source:d:\nuevo orden mundial\barstreet\main.cpp
+	<iostream>
+
+1717100770 source:d:\nuevo orden mundial\barstreet\articulo.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+	"Funciones.h"
+
+1717100734 d:\nuevo orden mundial\barstreet\articulo.h
+	<string>
+
+1717099034 d:\nuevo orden mundial\barstreet\funciones.h
+	<cstring>
+
+1718334648 source:e:\proyectos\barstreet\barstreet\main.cpp
+	<iostream>
+
+1716894751 source:e:\proyectos\barstreet\barstreet\fecha.cpp
+	<iostream>
+	<ctime>
+	"Fecha.h"
+
+1716894710 e:\proyectos\barstreet\barstreet\fecha.h
+	<string>
+
+1717114863 source:e:\proyectos\barstreet\barstreet\hora.cpp
+	<iostream>
+	<ctime>
+	"Hora.h"
+
+1718334908 e:\proyectos\barstreet\barstreet\hora.h
+	<string>
+
+1718334796 source:e:\proyectos\barstreet\barstreet\articulo.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+
+1718334914 e:\proyectos\barstreet\barstreet\articulo.h
+	<string>
+	"Funciones.h"
+
+1718335257 e:\proyectos\barstreet\barstreet\funciones.h
+	<cstring>
+
+1718334622 source:e:\proyectos\barstreet\barstreet\bebida.cpp
+	<iostream>
+	<cstring>
+	"Bebida.h"
+
+1718334922 e:\proyectos\barstreet\barstreet\bebida.h
+	<string>
+	"Articulo.h"
+
+1718334779 source:e:\proyectos\barstreet\barstreet\comida.cpp
+	<iostream>
+	<cstring>
+	"Comida.h"
+
+1718334925 e:\proyectos\barstreet\barstreet\comida.h
+	<string>
+	"Articulo.h"
+
+1718335292 source:e:\proyectos\barstreet\barstreet\funciones.cpp
+	<iostream>
+	<cstring>
+
+1718336407 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\articulo.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+
+1718336407 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\articulo.h
+	<string>
+	"Funciones.h"
+
+1718336407 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\funciones.h
+	<cstring>
+
+1718373085 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\bebida.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+	"Bebida.h"
+
+1718372591 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\bebida.h
+	<string>
+	"Articulo.h"
+
+1718373157 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\comida.cpp
+	<iostream>
+	<cstring>
+	"Comida.h"
+	"Funciones.h"
+
+1718373134 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\comida.h
+	<string>
+	"Articulo.h"
+	"Funciones.h"
+
+1718336407 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\fecha.cpp
+	<iostream>
+	<ctime>
+	"Fecha.h"
+
+1718336407 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\fecha.h
+	<string>
+
+1718336407 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\hora.cpp
+	<iostream>
+	<ctime>
+	"Hora.h"
+
+1718336407 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\hora.h
+	<string>
+
+1718336407 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\main.cpp
+	<iostream>
+
+1718372303 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\archivocomida.cpp
+	<iostream>
+	<cstring>
+	"Funciones.h"
+	"ArchivoComida.h"
+
+1718372361 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\archivocomida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"comida.h"
+
+1718372600 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\archivobebida.cpp
+	<iostream>
+	<cstring>
+	"Funciones.h"
+	"ArchivoBebida.h"
+	"Bebida.h"
+
+1718372394 c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\archivobebida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"bebida.h"
+
+1718336407 source:c:\users\claudio\downloads\barstreet-main\barstreet-main\barstreet\funciones.cpp
+	<iostream>
+	<cstring>
+
+1719829883 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\archivobebida.cpp
+	<iostream>
+	<cstring>
+	"Funciones.h"
+	"ArchivoBebida.h"
+	"Bebida.h"
+
+1718336407 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\funciones.h
+	<cstring>
+
+1719829594 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\archivobebida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"bebida.h"
+
+1719830100 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\bebida.h
+	<iostream>
+	"Articulo.h"
+
+1719830123 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\articulo.h
+	<string>
+	"Funciones.h"
+
+1719834215 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\archivocomida.cpp
+	<iostream>
+	<cstring>
+	"Funciones.h"
+	"ArchivoComida.h"
+
+1719829594 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\archivocomida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"comida.h"
+
+1719799511 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\comida.h
+	<iostream>
+	"Articulo.h"
+
+1719830100 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\articulo.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+
+1719830100 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\bebida.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+	"Bebida.h"
+
+1718336407 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\fecha.cpp
+	<iostream>
+	<ctime>
+	"Fecha.h"
+
+1718336407 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\fecha.h
+	<string>
+
+1718336407 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\funciones.cpp
+	<iostream>
+	<cstring>
+
+1718336407 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\hora.cpp
+	<iostream>
+	<ctime>
+	"Hora.h"
+
+1718336407 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\hora.h
+	<string>
+
+1719831946 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\main.cpp
+	<iostream>
+	"ProductosManager.h"
+
+1719799511 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\comida.cpp
+	<iostream>
+	<cstring>
+	"Comida.h"
+
+1718336407 source:c:\users\alan\documents\programacion ii\barstreet\fecha.cpp
+	<iostream>
+	<ctime>
+	"Fecha.h"
+
+1718336407 c:\users\alan\documents\programacion ii\barstreet\fecha.h
+	<string>
+
+1718336407 source:c:\users\alan\documents\programacion ii\barstreet\hora.cpp
+	<iostream>
+	<ctime>
+	"Hora.h"
+
+1718336407 c:\users\alan\documents\programacion ii\barstreet\hora.h
+	<string>
+
+1718336407 source:c:\users\alan\documents\programacion ii\barstreet\main.cpp
+	<iostream>
+
+1719619889 source:c:\users\alan\documents\programacion ii\barstreet\articulo.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+
+1719705649 c:\users\alan\documents\programacion ii\barstreet\articulo.h
+	<string>
+	"Funciones.h"
+
+1718336407 c:\users\alan\documents\programacion ii\barstreet\funciones.h
+	<cstring>
+
+1719620554 source:c:\users\alan\documents\programacion ii\barstreet\archivobebida.cpp
+	<iostream>
+	<cstring>
+	"Funciones.h"
+	"ArchivoBebida.h"
+	"Bebida.h"
+
+1719619889 c:\users\alan\documents\programacion ii\barstreet\archivobebida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"bebida.h"
+
+1719620316 c:\users\alan\documents\programacion ii\barstreet\bebida.h
+	<iostream>
+	"Articulo.h"
+
+1719620554 source:c:\users\alan\documents\programacion ii\barstreet\archivocomida.cpp
+	<iostream>
+	<cstring>
+	"Funciones.h"
+	"ArchivoComida.h"
+
+1719619889 c:\users\alan\documents\programacion ii\barstreet\archivocomida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"comida.h"
+
+1719620316 c:\users\alan\documents\programacion ii\barstreet\comida.h
+	<iostream>
+	"Articulo.h"
+
+1719620554 source:c:\users\alan\documents\programacion ii\barstreet\bebida.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+	"Bebida.h"
+
+1719620678 source:c:\users\alan\documents\programacion ii\barstreet\comida.cpp
+	<iostream>
+	<cstring>
+	"Comida.h"
+
+1719829594 c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\productosmanager.h
+	"Bebida.h"
+	"Comida.h"
+	"ArchivoBebida.h"
+	"ArchivoComida.h"
+
+1719841776 source:c:\users\alan\documents\laboratorio ii\programacion ii\barstreet\productosmanager.cpp
+	<iostream>
+	<cstring>
+	"ProductosManager.h"
+
