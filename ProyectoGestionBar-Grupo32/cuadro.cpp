@@ -43,7 +43,7 @@ std::string Cuadro::ajustarTexto(std::string texto, int tam){
     char* nuevaCad;
     nuevaCad = new char[tam];
     strncpy(nuevaCad,texto.c_str(),tam-1);
-
+    nuevaCad[tam-1] = '\0';
     std::string cadena = nuevaCad;
     delete [] nuevaCad;
 

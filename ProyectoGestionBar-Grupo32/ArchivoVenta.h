@@ -9,9 +9,10 @@
 
 class ArchivoVenta{
     private:
-        char nombre[30];
+        std::string _direccion;
     public:
-        ArchivoVenta(const char *n = "ventas.dat");
+        ArchivoVenta();
+        ArchivoVenta(std::string n);
 
         Venta leerRegistro(int pos);
 

@@ -1,6 +1,7 @@
 #include <cctype> // Para std::toupper
 #include <sstream> // Para std::ostringstream
 #include <cstdlib>
+#include <cmath>
 #include <string>
 #include "AppManager.h"
 #include "Terminal.h"
@@ -154,9 +155,10 @@ void AppManager::MenuUser(){
 }
 
 void AppManager::Ventas(){
-    std::string producto, cantidad;
-    //Fecha fechaVenta;
-    //fechaVenta.setFechaAct();
+    std::string producto;
+    int cantidad;
+    Fecha fechaVenta;
+    fechaVenta.setFechaAct();
     Terminal terminal;
     OPC SELECT = OPC::OPCION_NULL;
     int x = 4;
@@ -175,7 +177,7 @@ void AppManager::Ventas(){
     terminal.mostrarTexto("Legajo cajero:",x,y);
     terminal.mostrarTexto(usuario.getLegajo(),23,y);   /// legajo usuario actual
     terminal.mostrarTexto("Fecha:",x,y+2);
-//  terminal.mostrarTexto(Fecha().toString(),21,y+2);  /// fecha actual
+    terminal.mostrarTexto(Fecha().toString(),21,y+2);  /// fecha actual
     terminal.mostrarTexto("producto:",x,y+6);
     terminal.mostrarTexto("cantidad:",x,y+8);
     terminal.mostrarTexto("Precio:",x,y+10);
@@ -187,51 +189,30 @@ void AppManager::Ventas(){
     while(true){
 
         if(!ingreso){
-            producto = terminal.ingresarTexto(x+17,y+6,true);
 
-            cantidad = terminal.ingresarTexto(x+17,y+8,true);
+            while(art.getNroID() == -1){
+
+                terminal.pintarHorizontal(x+16,5,y+6);
+                producto = terminal.ingresarTexto(x+17,y+6,true);
+
+                if( producto.at(0) == 'c' || producto.at(0) == 'C') art = buscarComida(producto);
+                if( producto.at(0) == 'b' || producto.at(0) == 'B') art = buscarBebida(producto);
+
+            }
 
             //Paso a mayusculas
             producto = std::string(1, std::toupper(producto[0])) + producto.substr(1);
 
-
-            if( producto.at(0) == 'c' || producto.at(0) == 'C')
-            {
-                //Si no encuentra registro vuelve a pedir
-                art = buscarComida(producto);
-                while(art.getNroID()<0){
-                    terminal.pintarHorizontal(x+16,5,y+6);
-                    producto = terminal.ingresarTexto(x+17,y+6,true);
-                    terminal.pintarRectangulo(10,9,100,100);
-                    terminal.mostrarTexto("Precio:",50,y+10);
-                }
-            }else if( producto.at(0) == 'b' || producto.at(0) == 'B')
-            {
-                art = buscarComida(producto);
-                while(art.getNroID()<0){
-                    terminal.pintarHorizontal(x+16,5,y+6);
-                    producto = terminal.ingresarTexto(x+17,y+6,true);
-                    terminal.pintarRectangulo(10,9,100,100);
-                    terminal.mostrarTexto("Precio:",50,y+10);
-                }
-            }else{
-                while(art.getNroID()<0){
-                    terminal.pintarHorizontal(x+16,5,y+6);
-                    producto = terminal.ingresarTexto(x+17,y+6,true);
-                    terminal.pintarRectangulo(10,9,100,100);
-                    terminal.mostrarTexto("Precio:",50,y+10);
-                }
-            }
-
-
+            cantidad = strToInt(terminal.ingresarTexto(x+17,y+8,true));
 
             if( art.getLetrayNroID() == producto ){
-                precioTotal = art.getPrecioInicial()*std::atoi(cantidad.c_str());
+                //tomar precio actual;
+                precioTotal = art.getPrecioInicial()*cantidad;
                 terminal.mostrarTexto("$",x+17,y+10);
                 terminal.mostrarTexto(precioTotal,x+18,y+10);   //precio actual
 
                 venta.setArticulo(art);
-                venta.setCantidad( std::atoi(cantidad.c_str()) );
+                venta.setCantidad( cantidad );
                 venta.setPrecioActual( precioTotal );
                 venta.setIdVenta( idVenta );
                 venta.setLegajo( usuario.getLegajo() );
@@ -271,6 +252,7 @@ void AppManager::Ventas(){
                 ///guarda el prod actual
                 ArchivoVenta().grabarRegistro( venta );
                 ingreso = false;
+                art = Articulo();
             }
 
             if(SELECT == OPC::OPCION2) ingreso = false;
@@ -876,4 +858,36 @@ Articulo AppManager::buscarBebida( std::string bebidaID)
     }
 
     return regArticulo;
+}
+
+float AppManager::strToInt(std::string numero){
+    char* aux;
+    float nuevoNum = 0;
+    bool flag = false;
+    int contDec = 0;
+
+    aux = new char[strlen(numero.c_str())];
+    strcpy(aux,numero.c_str());
+
+    for(int i=0; i<strlen(numero.c_str()); i++){
+
+        if(aux[i] < 48 || aux[i] > 57){
+
+            if(aux[i] == 46){
+                flag = true;
+                continue;
+            }
+            else continue;
+        }
+
+        if(flag)contDec++;
+        nuevoNum *= 10;
+        nuevoNum += static_cast<float>(aux[i]) - 48;
+    }
+
+    if(flag) nuevoNum /= pow(10,contDec);
+
+    delete []aux;
+
+    return nuevoNum;
 }

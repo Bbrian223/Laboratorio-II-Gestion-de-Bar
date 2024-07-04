@@ -12,7 +12,7 @@ Bebida::Bebida(): Articulo(){
 }
 Bebida::Bebida(char letraID, int nroID, std::string nombre, int stock, float costo, float precio_inicial, float variacion, bool estado,
                 float volumen, float graduacion_alcohol)
-                    : Articulo(letraID, nroID, nombre, precio_inicial, costo, stock, variacion, estado){
+                    : Articulo(letraID, nroID, nombre, stock, costo, precio_inicial, variacion, estado){
     _volumen = volumen;
     _graduacion_acohol = graduacion_alcohol;
 }

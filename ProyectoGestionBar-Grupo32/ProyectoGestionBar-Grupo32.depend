@@ -145,10 +145,11 @@
 	"cuadro.h"
 	<cmath>
 
-1720114601 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\appmanager.cpp
+1720123389 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\appmanager.cpp
 	<cctype>
 	<sstream>
 	<cstdlib>
+	<cmath>
 	<string>
 	"AppManager.h"
 	"Terminal.h"
@@ -160,7 +161,7 @@
 	"ArchivoVenta.h"
 	"ArchivoUsuario.h"
 
-1720114243 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\appmanager.h
+1720123299 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\appmanager.h
 	<iostream>
 	"UsuarioManager.h"
 	"ProductoManager.h"
@@ -221,7 +222,7 @@
 1720115776 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivousuario.cpp
 	"ArchivoUsuario.h"
 
-1720114943 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\cuadro.cpp
+1720116557 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\cuadro.cpp
 	"cuadro.h"
 	<cstring>
 	<iomanip>
@@ -244,7 +245,7 @@
 	"Persona.h"
 	<cstring>
 
-1720107530 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\productomanager.cpp
+1720118856 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\productomanager.cpp
 	"ProductoManager.h"
 	"menuOptions.h"
 	"cuadro.h"
@@ -1128,7 +1129,7 @@
 	<cstring>
 	"comida.h"
 
-1720114243 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivoventa.h
+1720117799 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivoventa.h
 	<iostream>
 	<cstdlib>
 	<cstring>
@@ -1168,7 +1169,7 @@
 	"ArchivoComida.h"
 	"ArchivoArticulo.h"
 
-1720114243 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivoventa.cpp
+1720117883 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivoventa.cpp
 	"ArchivoVenta.h"
 
 1720114243 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\articulo.cpp
@@ -1176,7 +1177,7 @@
 	<cstring>
 	"Articulo.h"
 
-1720114243 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\bebida.cpp
+1720119291 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\bebida.cpp
 	<iostream>
 	<cstring>
 	"Articulo.h"

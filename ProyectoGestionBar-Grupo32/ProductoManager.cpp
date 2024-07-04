@@ -39,7 +39,7 @@ void ProductoManager::MostrarProductos(){
             if(SELECT == OPC::OPCION2)status = ListarComidas();
 
             if(!status){
-                terminal.mostrarTexto("No se encontraron Usuarios Cargados....",35,8);
+                terminal.mostrarTexto("No se encontraron registros Cargados....",35,8);
                 rlutil::anykey();
                 terminal.pintarRectangulo(34,2,27,84);
             }
@@ -106,7 +106,7 @@ bool ProductoManager::ListarComidas(){
     int filas = 25;
     int col = 8;
 
-    int cantReg = _archivoBebidas.contarRegistros();
+    int cantReg = _archivoComidas.contarRegistros();
     if(cantReg == -1)return false;
 
     reg = new Comida[cantReg];
