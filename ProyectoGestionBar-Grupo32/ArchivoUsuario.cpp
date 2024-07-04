@@ -1,7 +1,11 @@
 #include "ArchivoUsuario.h"
 
+ArchivoUsuarios::ArchivoUsuarios(){
+    _direccion = "database/Users.dat";
+}
+
 ArchivoUsuarios::ArchivoUsuarios(std::string nombreArch){
-    _direccion += nombreArch;
+    _direccion = nombreArch;
 }
 
 Usuario ArchivoUsuarios::leerRegistro(int pos){
@@ -98,4 +102,14 @@ bool ArchivoUsuarios::bajaUsuario(Usuario reg, int pos){
     fclose(pFile);
 
     return status;
+}
+
+bool ArchivoUsuarios::modificarRegistro(Usuario obj, int pos){
+    FILE *p;
+    p=fopen(_direccion.c_str(), "rb+"); ///agrega al modo de apertura lo que le falta
+    if(p==NULL) return false;
+    fseek(p, pos*sizeof obj,0);///función que permite ubicarse dentro del archivo
+    bool escribio=fwrite(&obj, sizeof obj, 1, p);
+    fclose(p);
+    return escribio;
 }

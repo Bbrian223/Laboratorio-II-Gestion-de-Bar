@@ -5,11 +5,11 @@
 
 class ArchivoUsuarios{
 private:
-    std::string _direccion = "database/";
+    std::string _direccion;
 
 public:
-
-    ArchivoUsuarios(std::string nombreArch = "Users.dat");
+    ArchivoUsuarios();
+    ArchivoUsuarios(std::string nombreArch);
     Usuario leerRegistro(int pos);
     void ObtenerTodosReg(Usuario* reg);
     int buscarLegajo(int legajo);
@@ -17,4 +17,5 @@ public:
     bool grabarRegistro(Usuario reg);
     int getNuevoLegajo();
     bool bajaUsuario(Usuario reg, int pos);
+    bool modificarRegistro(Usuario obj, int pos);
 };

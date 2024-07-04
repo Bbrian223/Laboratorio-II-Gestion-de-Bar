@@ -2,6 +2,13 @@
 #include "Terminal.h"
 #include "menuOptions.h"
 #include "cuadro.h"
+<<<<<<< Updated upstream:ProyectoGestionBar-Grupo32/AppManager.cpp
+=======
+#include "Fecha.h"
+#include "ArchivoComida.h"
+#include "ArchivoBebida.h"
+#include "ArchivoVenta.h"
+>>>>>>> Stashed changes:BarStreet/AppManager.cpp
 
 void AppManager::login(){
     std::string user, pass;
@@ -437,13 +444,218 @@ Terminal terminal;
 
 void AppManager::GenerarBackup(){
     Terminal terminal;
+<<<<<<< Updated upstream:ProyectoGestionBar-Grupo32/AppManager.cpp
     terminal.pintarRectangulo(34,2,27,80);
+=======
+    terminal.pintarRectangulo(34,2,27,80);
+
+    OPC SELECT = OPC::OPCION1;
+    int x = 4;
+    int y = 5;
+
+    terminal.pintarRectangulo(4,2,25,28);
+    terminal.pintarRectangulo(34,2,27,82);
+
+    bool escribioRegistro = false;
+
+    do{
+        terminal.crearBoton("GENERAR BACKUP COMIDA",x,y,SELECT == OPC::OPCION1);
+        terminal.crearBoton("GENERAR BACKUP BEBIDA",x,y+3,SELECT == OPC::OPCION2);
+        terminal.crearBoton("GENERAR BACKUP USUARIOS",x,y+6,SELECT == OPC::OPCION3);
+        terminal.crearBoton("VOLVER",x,y+21,SELECT == OPC::OPCION4);
+
+        switch(rlutil::getkey()){
+        case 14:    ///sube
+            if(SELECT == OPC::OPCION1) SELECT = OPC::OPCION4;
+            else MenuOption::anteriorOpcion(SELECT);
+            break;
+        case 15:    ///baja
+            if(SELECT == OPC::OPCION4) SELECT = OPC::OPCION1;
+            else MenuOption::siguienteOpcion(SELECT);
+            break;
+        case 1:     ///enter
+            if(SELECT == OPC::OPCION1)
+            {
+                ArchivoComida archivoBackupComida("backup/comidaBACKUP.dat");
+                int cantRegistros = ArchivoComida().contarRegistros();
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoBackupComida.grabarRegistro( ArchivoComida().leerRegistro(i) );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de comida generado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+
+            if(SELECT == OPC::OPCION2){
+                ArchivoBebida archivoBackupBebida("backup/bebidaBACKUP.dat") ;
+                int cantRegistros = ArchivoBebida().contarRegistros();
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoBackupBebida.grabarRegistro( ArchivoBebida().leerRegistro(i) );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de bebida generado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+            if(SELECT == OPC::OPCION3){
+                ArchivoUsuarios archivoBackupUsuario("backup/usuarioBACKUP.dat") ;
+                int cantRegistros = ArchivoUsuarios().cantidadRegistros();
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoBackupUsuario.grabarRegistro( ArchivoUsuarios().leerRegistro(i) );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de usuario generado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+            if(SELECT == OPC::OPCION4){
+                terminal.pintarRectangulo(4,2,27,27);
+                return;
+            }
+
+            break;
+        }
+
+    }while(true);
+
+>>>>>>> Stashed changes:BarStreet/AppManager.cpp
     rlutil::anykey();
 }
 
 void AppManager::CargarBackup(){
+<<<<<<< Updated upstream:ProyectoGestionBar-Grupo32/AppManager.cpp
     Terminal terminal;
     terminal.pintarRectangulo(34,2,27,80);
+=======
+    Terminal terminal;
+    terminal.pintarRectangulo(34,2,27,80);
+
+    OPC SELECT = OPC::OPCION1;
+    int x = 4;
+    int y = 5;
+
+    terminal.pintarRectangulo(4,2,25,28);
+    terminal.pintarRectangulo(34,2,27,82);
+
+    bool escribioRegistro = false;
+
+    do{
+        terminal.crearBoton("CARGAR BACKUP COMIDA",x,y,SELECT == OPC::OPCION1);
+        terminal.crearBoton("CARGAR BACKUP BEBIDA",x,y+3,SELECT == OPC::OPCION2);
+        terminal.crearBoton("CARGAR BACKUP USUARIO",x,y+6,SELECT == OPC::OPCION3);
+        terminal.crearBoton("VOLVER",x,y+21,SELECT == OPC::OPCION4);
+
+        switch(rlutil::getkey()){
+        case 14:    ///sube
+            if(SELECT == OPC::OPCION1) SELECT = OPC::OPCION4;
+            else MenuOption::anteriorOpcion(SELECT);
+            break;
+        case 15:    ///baja
+            if(SELECT == OPC::OPCION4) SELECT = OPC::OPCION1;
+            else MenuOption::siguienteOpcion(SELECT);
+            break;
+        case 1:     ///enter
+            if(SELECT == OPC::OPCION1)
+            {
+                ArchivoComida archivoBackupComida("backup/comidaBACKUP.dat");
+                ArchivoComida archivoComida;
+                int cantRegistros = archivoBackupComida.contarRegistros();
+
+                //Creo un registro por si no existe el archivo comida.dat
+                archivoComida.grabarRegistro(Comida());
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoComida.modificarRegistro( archivoBackupComida.leerRegistro(i), i );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de comida cargado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+
+            if(SELECT == OPC::OPCION2){
+                ArchivoBebida archivoBackupBebida("backup/bebidaBACKUP.dat");
+                ArchivoBebida archivoBebida;
+                int cantRegistros = archivoBackupBebida.contarRegistros();
+
+                //Creo un registro por si no existe el archivo comida.dat
+                archivoBebida.grabarRegistro(Bebida());
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoBebida.modificarRegistro( archivoBackupBebida.leerRegistro(i),i );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de bebida cargado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+            if(SELECT == OPC::OPCION3){
+                ArchivoUsuarios archivoBackupUsuario("backup/usuarioBACKUP.dat");
+                ArchivoUsuarios ArchivoUsuarios;
+                int cantRegistros = archivoBackupUsuario.cantidadRegistros();
+
+                //Creo un registro por si no existe el archivo comida.dat
+                ArchivoUsuarios.grabarRegistro(Usuario());
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = ArchivoUsuarios.modificarRegistro( archivoBackupUsuario.leerRegistro(i),i );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de usuario cargado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+            if(SELECT == OPC::OPCION4){
+                terminal.pintarRectangulo(4,2,27,27);
+                return;
+            }
+
+            break;
+        }
+
+    }while(true);
+
+>>>>>>> Stashed changes:BarStreet/AppManager.cpp
     rlutil::anykey();
 }
 
