@@ -448,3 +448,215 @@
 	<cstring>
 	"Venta.h"
 
+1720064828 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\appmanager.cpp
+	<cctype>
+	<sstream>
+	<cstdlib>
+	<string>
+	"AppManager.h"
+	"Terminal.h"
+	"menuOptions.h"
+	"cuadro.h"
+	"Fecha.h"
+	"ArchivoComida.h"
+	"ArchivoBebida.h"
+	"ArchivoVenta.h"
+
+1720052554 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\appmanager.h
+	<iostream>
+	"UsuarioManager.h"
+	"ProductoManager.h"
+	"Articulo.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\usuariomanager.h
+	"Terminal.h"
+	"Usuario.h"
+	"ArchivoUsuario.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\terminal.h
+	"rlutil.h"
+	<windows.h>
+	<iostream>
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\usuario.h
+	<iostream>
+	"Persona.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\persona.h
+	"Fecha.h"
+
+1719777845 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\fecha.h
+	<string>
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivousuario.h
+	<iostream>
+	"Usuario.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\productomanager.h
+	"Terminal.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\menuoptions.h
+	<iostream>
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\cuadro.h
+	<iostream>
+	"Terminal.h"
+
+1719794404 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivoarticulo.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"Articulo.h"
+
+1719971548 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\articulo.h
+	<string>
+
+1719971588 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivoarticulo.cpp
+	<iostream>
+	<cstring>
+	"ArchivoArticulo.h"
+
+1719971909 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivobebida.cpp
+	<iostream>
+	<cstring>
+	"ArchivoBebida.h"
+	"Bebida.h"
+	"ArchivoArticulo.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivobebida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"bebida.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\bebida.h
+	<iostream>
+	"Articulo.h"
+
+1719971920 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivocomida.cpp
+	<iostream>
+	<cstring>
+	"ArchivoComida.h"
+	"ArchivoArticulo.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivocomida.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"comida.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\comida.h
+	<iostream>
+	"Articulo.h"
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivousuario.cpp
+	"ArchivoUsuario.h"
+
+1720059769 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivoventa.cpp
+	"ArchivoVenta.h"
+
+1720058466 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\archivoventa.h
+	<iostream>
+	<cstdlib>
+	<cstring>
+	"Venta.h"
+
+1720052485 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\venta.h
+	<string>
+	"Articulo.h"
+	"Fecha.h"
+	"Hora.h"
+	"Usuario.h"
+
+1718336407 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\hora.h
+	<string>
+
+1719978876 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\articulo.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\bebida.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+	"Bebida.h"
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\comida.cpp
+	<iostream>
+	<cstring>
+	"Comida.h"
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\cuadro.cpp
+	"cuadro.h"
+	<cstring>
+
+1719777839 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\fecha.cpp
+	<iostream>
+	<ctime>
+	"Fecha.h"
+
+1718336407 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\hora.cpp
+	<iostream>
+	<ctime>
+	"Hora.h"
+
+1720061698 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\main.cpp
+	<iostream>
+	"appManager.h"
+	"ArchivoArticulo.h"
+	"Articulo.h"
+	"ArchivoComida.h"
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\persona.cpp
+	"Persona.h"
+	<cstring>
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\productomanager.cpp
+	"ProductoManager.h"
+	"menuOptions.h"
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\productosmanager.cpp
+	<iostream>
+	<cstring>
+	"ProductosManager.h"
+
+1719883950 c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\productosmanager.h
+	"Bebida.h"
+	"Comida.h"
+	"ArchivoBebida.h"
+	"ArchivoComida.h"
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\terminal.cpp
+	"Terminal.h"
+	<cstring>
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\usuario.cpp
+	"Usuario.h"
+	<cstring>
+
+1719883950 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\usuariomanager.cpp
+	"UsuarioManager.h"
+	"menuOptions.h"
+	"cuadro.h"
+	<cmath>
+
+1720052478 source:c:\users\renzo\downloads\laboratorio-ii-gestion-de-bar-programacion\laboratorio-ii-gestion-de-bar-programacion\barstreet\venta.cpp
+	<iostream>
+	<cstring>
+	"Venta.h"
+

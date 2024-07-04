@@ -34,5 +34,15 @@ bool ArchivoVenta::grabarRegistro(Venta reg){
     fclose(p);
     return escribio;
 }
+bool ArchivoVenta::modificarRegistro(Venta obj, int pos){
+    FILE *p;
+    p=fopen(nombre, "rb+"); ///agrega al modo de apertura lo que le falta
+    if(p==NULL) return false;
+    fseek(p, pos*sizeof obj,0);///función que permite ubicarse dentro del archivo
+    bool escribio=fwrite(&obj, sizeof obj, 1, p);
+    fclose(p);
+    return escribio;
+}
+
 
 

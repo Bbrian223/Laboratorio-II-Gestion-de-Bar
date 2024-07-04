@@ -2,7 +2,20 @@
 #include <cstring>
 #include "Venta.h"
 
+Venta::Venta( Usuario user){
 
+    setIdVenta     ( -1 );
+    setLegajo      ( -1 );
+    setFechaVenta  ( Fecha());
+    setHora        ( Horario() );
+    setPrecioActual( -1);
+    setCantidad    ( -1 );
+    setArticulo    ( Articulo() );
+    setUser        ( user );
+    setEstado      ( true );
+
+
+}
 
 Venta::Venta(int id_venta, int id_legajo, Fecha fecha_venta, Horario hora_venta, float precio_actual, int cantidad, Articulo reg,Usuario user, bool estado){
 
@@ -13,9 +26,9 @@ Venta::Venta(int id_venta, int id_legajo, Fecha fecha_venta, Horario hora_venta,
     setPrecioActual( precio_actual );
     setCantidad    ( cantidad );
     setArticulo    ( reg );
-    //setUser        ( Usuario() );
+    setUser        ( user );
     setEstado      ( true );
-    user = Usuario();
+
 
 }
 
@@ -53,17 +66,12 @@ void Venta::setCantidad( int cantidad )
     _cantidad = cantidad;
 }
 
-/*
+
 void Venta::setUser( Usuario user)
 {
-    _user.setApellido( user.getApellido() );
-    _user.setCategoria( user.getCategoria() );
-    _user.setLegajo( user.getLegajo() );
-    _user.setNombre( user.getNombre() );
-    _user.setPass( user.getPass() );
-    _user.setEstado( user.getEstado() );
+    _user = user;
 }
-*/
+
 
 void Venta::setArticulo( Articulo reg )
 {

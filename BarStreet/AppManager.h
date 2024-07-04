@@ -2,6 +2,8 @@
 #include <iostream>
 #include "UsuarioManager.h"
 #include "ProductoManager.h"
+#include "Articulo.h"
+
 
 class AppManager{
 
@@ -15,7 +17,7 @@ private:
 
     void MenuAdmin();       //ok
     void MenuUser();        //ok
-    void Venta();           //ok
+    void Ventas();           //ok
     void Historial();           //a medias
     void Config();              //ok
     void MenuProductos();       //ok
@@ -26,6 +28,10 @@ private:
     void MenuCopiaSeg();        //OK
     void GenerarBackup();
     void CargarBackup();
+
+
+    Articulo buscarComida(std::string comidaID);
+    Articulo buscarBebida(std::string bebidaID);
     /************************************************/
 
 };

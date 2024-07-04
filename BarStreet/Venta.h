@@ -22,6 +22,7 @@ class Venta{
 
 
     public:
+        Venta(Usuario user);
         Venta(int id_venta, int id_legajo, Fecha fecha_venta, Horario hora_venta, float precio_actual, int cantidad, Articulo reg, Usuario user, bool estado);
         void setIdVenta     ( int id_venta );
         void setLegajo      ( int legajo );

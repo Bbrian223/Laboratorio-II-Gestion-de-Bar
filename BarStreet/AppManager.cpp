@@ -1,3 +1,5 @@
+#include <cctype> // Para std::toupper
+#include <sstream> // Para std::ostringstream
 #include <cstdlib>
 #include <string>
 #include "AppManager.h"
@@ -5,7 +7,13 @@
 #include "menuOptions.h"
 #include "cuadro.h"
 #include "Fecha.h"
-#include "ArchivoArticulo.h"
+#include "ArchivoComida.h"
+#include "ArchivoBebida.h"
+#include "ArchivoVenta.h"
+
+
+
+
 
 void AppManager::login(){
     std::string user, pass;
@@ -93,7 +101,7 @@ void AppManager::MenuAdmin(){
 
             break;
         case 1:     ///enter
-            if(SELECT == OPC::OPCION1) Venta();
+            if(SELECT == OPC::OPCION1) Ventas();
             if(SELECT == OPC::OPCION2) Historial();
             if(SELECT == OPC::OPCION3) Config();
             if(SELECT == OPC::OPCION4) Reportes();
@@ -136,7 +144,7 @@ void AppManager::MenuUser(){
 
             break;
         case 1:     ///enter
-            if(SELECT == OPC::OPCION1) Venta();
+            if(SELECT == OPC::OPCION1) Ventas();
             if(SELECT == OPC::OPCION2) Historial();
             if(SELECT == OPC::OPCION3) login();
             if(SELECT == OPC::OPCION4) return;
@@ -148,7 +156,7 @@ void AppManager::MenuUser(){
     }while(true);
 }
 
-void AppManager::Venta(){
+void AppManager::Ventas(){
     std::string producto, cantidad;
     //Fecha fechaVenta;
     //fechaVenta.setFechaAct();
@@ -160,14 +168,17 @@ void AppManager::Venta(){
     int encontroArchivo = false;
     int idArticulo = -1;
     int posicionArticulo = -2;
+    float precioTotal = 0;
     Articulo art;
+    Venta venta(usuario);
+    int idVenta = ArchivoVenta().contarRegistros()+1;
 
     terminal.pintarRectangulo(4,2,25,27);
 
     terminal.mostrarTexto("Legajo cajero:",x,y);
     terminal.mostrarTexto(usuario.getLegajo(),23,y);   /// legajo usuario actual
     terminal.mostrarTexto("Fecha:",x,y+2);
-//    terminal.mostrarTexto(Fecha().toString(),21,y+2);  /// fecha actual
+//  terminal.mostrarTexto(Fecha().toString(),21,y+2);  /// fecha actual
     terminal.mostrarTexto("producto:",x,y+6);
     terminal.mostrarTexto("cantidad:",x,y+8);
     terminal.mostrarTexto("Precio:",x,y+10);
@@ -180,33 +191,56 @@ void AppManager::Venta(){
 
         if(!ingreso){
             producto = terminal.ingresarTexto(x+17,y+6,true);
+
             cantidad = terminal.ingresarTexto(x+17,y+8,true);
 
-            //Le saco la letra y casteo string a int
-            producto = producto.erase(0,1);
-            idArticulo = std::atoi(producto.c_str());
+            //Paso a mayusculas
+            producto = std::string(1, std::toupper(producto[0])) + producto.substr(1);
 
-            posicionArticulo = ArchivoArticulo().buscarRegistro( idArticulo );
 
-            if(posicionArticulo >= 0)
+            if( producto.at(0) == 'c' || producto.at(0) == 'C')
             {
-                art = ArchivoArticulo().leerRegistro(posicionArticulo);
-            }
-
-
-            if(art.getNroID() >= 0){
-                //terminal.mostrarTexto(idArticulo,x+20,y+10);
-                terminal.mostrarTexto(idArticulo,x+20,y+10);
+                //Si no encuentra registro vuelve a pedir
+                art = buscarComida(producto);
+                while(art.getNroID()<0){
+                    terminal.pintarHorizontal(x+16,5,y+6);
+                    producto = terminal.ingresarTexto(x+17,y+6,true);
+                    terminal.pintarRectangulo(10,9,100,100);
+                    terminal.mostrarTexto("Precio:",50,y+10);
+                }
+            }else if( producto.at(0) == 'b' || producto.at(0) == 'B')
+            {
+                art = buscarComida(producto);
+                while(art.getNroID()<0){
+                    terminal.pintarHorizontal(x+16,5,y+6);
+                    producto = terminal.ingresarTexto(x+17,y+6,true);
+                    terminal.pintarRectangulo(10,9,100,100);
+                    terminal.mostrarTexto("Precio:",50,y+10);
+                }
             }else{
-                terminal.mostrarTexto("No encontro",x+20,y+10);
+                while(art.getNroID()<0){
+                    terminal.pintarHorizontal(x+16,5,y+6);
+                    producto = terminal.ingresarTexto(x+17,y+6,true);
+                    terminal.pintarRectangulo(10,9,100,100);
+                    terminal.mostrarTexto("Precio:",50,y+10);
+                }
             }
 
 
 
+            if( art.getLetrayNroID() == producto ){
+                precioTotal = art.getPrecioInicial()*std::atoi(cantidad.c_str());
+                terminal.mostrarTexto("$",x+17,y+10);
+                terminal.mostrarTexto(precioTotal,x+18,y+10);   //precio actual
+
+                venta.setArticulo(art);
+                venta.setCantidad( std::atoi(cantidad.c_str()) );
+                venta.setPrecioActual( precioTotal );
+                venta.setIdVenta( idVenta );
+                venta.setLegajo( usuario.getLegajo() );
+            }
 
 
-
-            //terminal.mostrarTexto("$100.5",x+20,y+10);   //precio actual
             rlutil::hidecursor();
             ingreso = true;
             SELECT = OPC::OPCION1;
@@ -230,8 +264,7 @@ void AppManager::Venta(){
         case 1:
             if(SELECT == OPC::OPCION3){
                 ///guardar prod actual
-
-
+                ArchivoVenta().grabarRegistro( venta );
                 terminal.pintarRectangulo(4,2,25,27);
                 return;
             }
@@ -239,12 +272,14 @@ void AppManager::Venta(){
 
             if(SELECT == OPC::OPCION1){
                 ///guarda el prod actual
+                ArchivoVenta().grabarRegistro( venta );
                 ingreso = false;
             }
 
             if(SELECT == OPC::OPCION2) ingreso = false;
 
-            break;
+
+                break;
         }
     }
 }
@@ -254,6 +289,8 @@ void AppManager::Historial(){
     OPC SELECT = OPC::OPCION1;
     char arriba[2] = {(char)30,'\0'};
     char abajo[2] = {(char)31,'\0'};
+    std::ostringstream oss;
+    Venta venta(usuario);
 
     terminal.pintarRectangulo(34,2,27,82);
 
@@ -290,6 +327,24 @@ void AppManager::Historial(){
             break;
         case 1:
             ///funcionamiento de los botones
+
+            if(SELECT == OPC::OPCION3){
+               int cantVentas = ArchivoVenta().contarRegistros();
+
+
+               ///Muestro todas las ventas
+               for( int i = 0; i < cantVentas; i++)
+               {
+                    venta = ArchivoVenta().leerRegistro(i);
+                    oss << "ID Venta: " << venta.getIdVenta() << " Articulo: "<<venta.getArticulo().getNombre();
+                    terminal.mostrarTexto(oss.str(),33,i+5);
+                    oss.clear();
+               }
+
+
+            }
+
+
             break;
         case 0:
             //EXIT
@@ -473,12 +528,166 @@ Terminal terminal;
 void AppManager::GenerarBackup(){
     Terminal terminal;
     terminal.pintarRectangulo(34,2,27,80);
+
+    OPC SELECT = OPC::OPCION1;
+    int x = 4;
+    int y = 5;
+
+    terminal.pintarRectangulo(4,2,25,28);
+    terminal.pintarRectangulo(34,2,27,82);
+
+    bool escribioRegistro = false;
+
+    do{
+        terminal.crearBoton("GENERAR BACKUP COMIDA",x,y,SELECT == OPC::OPCION1);
+        terminal.crearBoton("GENERAR BACKUP BEBIDA",x,y+3,SELECT == OPC::OPCION2);
+        terminal.crearBoton("VOLVER",x,y+21,SELECT == OPC::OPCION3);
+
+        switch(rlutil::getkey()){
+        case 14:    ///sube
+            if(SELECT == OPC::OPCION1) SELECT = OPC::OPCION3;
+            else MenuOption::anteriorOpcion(SELECT);
+            break;
+        case 15:    ///baja
+            if(SELECT == OPC::OPCION3) SELECT = OPC::OPCION1;
+            else MenuOption::siguienteOpcion(SELECT);
+            break;
+        case 1:     ///enter
+            if(SELECT == OPC::OPCION1)
+            {
+                ArchivoComida archivoBackupComida("comidaBACKUP.dat");
+                int cantRegistros = ArchivoComida().contarRegistros();
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoBackupComida.grabarRegistro( ArchivoComida().leerRegistro(i) );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de comida generado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+
+            if(SELECT == OPC::OPCION2){
+                ArchivoBebida archivoBackupBebida("bebidaBACKUP.dat") ;
+                int cantRegistros = ArchivoBebida().contarRegistros();
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoBackupBebida.grabarRegistro( ArchivoBebida().leerRegistro(i) );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de bebida generado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+            if(SELECT == OPC::OPCION3){
+                terminal.pintarRectangulo(4,2,27,27);
+                return;
+            }
+
+            break;
+        }
+
+    }while(true);
+
     rlutil::anykey();
 }
 
 void AppManager::CargarBackup(){
     Terminal terminal;
     terminal.pintarRectangulo(34,2,27,80);
+
+    OPC SELECT = OPC::OPCION1;
+    int x = 4;
+    int y = 5;
+
+    terminal.pintarRectangulo(4,2,25,28);
+    terminal.pintarRectangulo(34,2,27,82);
+
+    bool escribioRegistro = false;
+
+    do{
+        terminal.crearBoton("CARGAR BACKUP COMIDA",x,y,SELECT == OPC::OPCION1);
+        terminal.crearBoton("CARGAR BACKUP BEBIDA",x,y+3,SELECT == OPC::OPCION2);
+        terminal.crearBoton("VOLVER",x,y+21,SELECT == OPC::OPCION3);
+
+        switch(rlutil::getkey()){
+        case 14:    ///sube
+            if(SELECT == OPC::OPCION1) SELECT = OPC::OPCION3;
+            else MenuOption::anteriorOpcion(SELECT);
+            break;
+        case 15:    ///baja
+            if(SELECT == OPC::OPCION3) SELECT = OPC::OPCION1;
+            else MenuOption::siguienteOpcion(SELECT);
+            break;
+        case 1:     ///enter
+            if(SELECT == OPC::OPCION1)
+            {
+                ArchivoComida archivoBackupComida("comidaBACKUP.dat");
+                ArchivoComida archivoComida("comida.dat");
+                int cantRegistros = archivoBackupComida.contarRegistros();
+
+                //Creo un registro por si no existe el archivo comida.dat
+                archivoComida.grabarRegistro(Comida());
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoComida.modificarRegistro( archivoBackupComida.leerRegistro(i), i );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de comida cargado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+
+            if(SELECT == OPC::OPCION2){
+                ArchivoBebida archivoBackupBebida("comidaBACKUP.dat");
+                ArchivoBebida archivoBebida;
+                int cantRegistros = archivoBackupBebida.contarRegistros();
+
+                //Creo un registro por si no existe el archivo comida.dat
+                archivoBebida.grabarRegistro(Bebida());
+
+                for(int i = 0; i< cantRegistros; i++)
+                {
+                    escribioRegistro = archivoBebida.modificarRegistro( archivoBackupBebida.leerRegistro(i),i );
+                    if (!escribioRegistro) return;
+                }
+
+                if(escribioRegistro)
+                {
+                    terminal.mostrarTexto(">Backup de comida cargado correctamente",x+40,y+5);
+                }else{
+                    terminal.mostrarTexto(">No se pudo generar el backup",x+40,y+5);
+                }
+            }
+
+            if(SELECT == OPC::OPCION3){
+                terminal.pintarRectangulo(4,2,27,27);
+                return;
+            }
+
+            break;
+        }
+
+    }while(true);
+
     rlutil::anykey();
 }
 
@@ -566,3 +775,66 @@ void AppManager::TablaPrecios(){
     fflush(stdin);
 }
 
+Articulo AppManager::buscarComida( std::string comidaID)
+{
+    Comida regComida;
+    Articulo regArticulo;
+    int posicionArticulo = -1;
+
+    //Le saco la letra y casteo string a int
+    comidaID = comidaID.erase(0,1);
+    int idArticulo = std::atoi(comidaID.c_str());
+
+    posicionArticulo = ArchivoComida().buscarRegistro( idArticulo );
+
+    if(posicionArticulo >= 0)
+    {
+        regComida = ArchivoComida().leerRegistro(posicionArticulo);
+    }
+
+    if( regComida.getNroID() == idArticulo)
+    {
+        regArticulo.setCosto( regComida.getCosto());
+        regArticulo.setLetraID( regComida.getLetraID());
+        regArticulo.setNombre( regComida.getNombre());
+        regArticulo.setNroID( regComida.getNroID());
+        regArticulo.setPrecioInicial( regComida.getPrecioInicial());
+        regArticulo.setStock( regComida.getStock());
+        regArticulo.setVariacion( regComida.getVariacion());
+        regArticulo.setEstado( regComida.getEstado());
+    }
+
+    return regArticulo;
+}
+
+Articulo AppManager::buscarBebida( std::string bebidaID)
+{
+    Bebida regBebida;
+    Articulo regArticulo;
+    int posicionArticulo = -1;
+
+    //Le saco la letra y casteo string a int
+    bebidaID = bebidaID.erase(0,1);
+    int idArticulo = std::atoi(bebidaID.c_str());
+
+    posicionArticulo = ArchivoBebida().buscarRegistro( idArticulo );
+
+    if(posicionArticulo >= 0)
+    {
+        regBebida = ArchivoBebida().leerRegistro(posicionArticulo);
+    }
+
+    if( regBebida.getNroID() >= 0)
+    {
+        regArticulo.setCosto( regBebida.getCosto());
+        regArticulo.setLetraID( regBebida.getLetraID());
+        regArticulo.setNombre( regBebida.getNombre());
+        regArticulo.setNroID( regBebida.getNroID());
+        regArticulo.setPrecioInicial( regBebida.getPrecioInicial());
+        regArticulo.setStock( regBebida.getStock());
+        regArticulo.setVariacion( regBebida.getVariacion());
+        regArticulo.setEstado( regBebida.getEstado());
+    }
+
+    return regArticulo;
+}
