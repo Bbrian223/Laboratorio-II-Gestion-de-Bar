@@ -34,6 +34,7 @@ public:
 
     void agregarColumna(std::string nombre, int anchoCol, rlutil::COLOR cBack = rlutil::COLOR::BLACK);
     void escribirFila(std::string texto, int col, rlutil::COLOR cText = rlutil::COLOR::WHITE);
+    void escribirFila(float numero, int col, rlutil::COLOR cText = rlutil::COLOR::WHITE);
     void agregarDivisiones();
 
     bool saltoFila();

@@ -34,8 +34,18 @@
 		</Compiler>
 		<Unit filename="AppManager.cpp" />
 		<Unit filename="AppManager.h" />
+		<Unit filename="ArchivoBebida.cpp" />
+		<Unit filename="ArchivoBebida.h" />
+		<Unit filename="ArchivoComida.cpp" />
+		<Unit filename="ArchivoComida.h" />
 		<Unit filename="ArchivoUsuario.cpp" />
 		<Unit filename="ArchivoUsuario.h" />
+		<Unit filename="Articulo.cpp" />
+		<Unit filename="Articulo.h" />
+		<Unit filename="Bebida.cpp" />
+		<Unit filename="Bebida.h" />
+		<Unit filename="Comida.cpp" />
+		<Unit filename="Comida.h" />
 		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
 		<Unit filename="Persona.cpp" />

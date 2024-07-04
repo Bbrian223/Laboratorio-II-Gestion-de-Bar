@@ -1,64 +1,151 @@
 #include "ProductoManager.h"
 #include "menuOptions.h"
+#include "cuadro.h"
+#include <cmath>
 
 void ProductoManager::MostrarProductos(){
     Terminal terminal;
+    const char select[2] = {(char)16,'\0'};
+
     OPC SELECT = OPC::OPCION_NULL;
-    char arriba[2] = {(char)30,'\0'};
-    char abajo[2] = {(char)31,'\0'};
-
-    int posxColum1 = 35;
-    int posxColum2 = 70;
-    int posyInicial = 2;
-    int cantArtListados = 0;
-    int posx, posy, cantPos, posRegAct, cantPaginas;
-
-    /** Busco la cantidad de registros a listar
-        cantPos = arch.cantidadRegitros(); */
-
-    posx = posxColum1;
-    posy = posyInicial;
+    int posFlecha;
+    bool status;
 
 
-    terminal.crearBotonVertical(arriba,112,8,SELECT == OPC::OPCION1);
-    terminal.crearBotonVertical(abajo,112,14,SELECT == OPC::OPCION2);
+    terminal.pintarRectangulo(34,2,27,80);
 
-    for(int i=0; i<cantPos; i++){
-        if(cantArtListados == 4){
-            posx = posxColum2;
-            posy = posyInicial;
-            cantArtListados = 0;
+    while(true){
+        terminal.mostrarTexto("Tipo de Producto a cargar: ",35,2);
+        terminal.mostrarTexto("BEBIDAS",80,2,SELECT == OPC::OPCION1);
+        terminal.mostrarTexto("COMIDAS",100,2, SELECT == OPC::OPCION2);
 
-        }else posx = posxColum1;
+        if(SELECT != OPC::OPCION_NULL)terminal.mostrarTexto(select,posFlecha,2);
 
-        /** obtiene el registro del archivo
-            reg = arch.buscarRegistro(i); */
+        switch(rlutil::getkey()){
+        case 16:
+            terminal.pintarHorizontal(posFlecha,1,2);
+            SELECT = OPC::OPCION1;
+            posFlecha = 78;
+            break;
+        case 17:
+            terminal.pintarHorizontal(posFlecha,1,2);
+            SELECT = OPC::OPCION2;
+            posFlecha = 98;
+            break;
+        case 1:
+            terminal.pintarRectangulo(34,3,26,84);
 
-        terminal.mostrarTexto("ID:...............",posx,posy);
-        ///terminal.mostrarTexto(reg.getId(),posx+20,posy);
+            if(SELECT == OPC::OPCION1)status = ListarBebidas();
+            if(SELECT == OPC::OPCION2)status = ListarComidas();
 
-        terminal.mostrarTexto("Nombre:...........",posx,posy+1);
-        ///terminal.mostrarTexto(reg.getNombre(),posx+20,posy+1);
+            if(!status){
+                terminal.mostrarTexto("No se encontraron Usuarios Cargados....",35,8);
+                rlutil::anykey();
+                terminal.pintarRectangulo(34,2,27,84);
+            }
 
-        terminal.mostrarTexto("Costo:...........$",posx,posy+2);
-        ///terminal.mostrarTexto(reg.getCosto(),posx+20,posy+2);
+            break;
+        case 0:
+            return;
+        }
+    }
+}
 
-        terminal.mostrarTexto("Precio:..........$",posx,posy+3);
-        ///terminal.mostrarTexto(reg.getPrecio(),posx+20,posy+3);
+bool ProductoManager::ListarBebidas(){
+    Bebida *reg;
 
-        terminal.mostrarTexto("Stock:............",posx,posy+4);
-        ///terminal.mostrarTexto(reg.getStock(),posx+20,posy+4);
+    int posx = 35;
+    int posy = 5;
+    int filas = 25;
+    int col = 8;
 
-        terminal.mostrarTexto("Estado:...........",posx,posy+5);
-        ///terminal.mostrarTexto((reg.getEstado() == true ? "true":"false"),posx+20,posy+5);
+    int cantReg = _archivoBebidas.contarRegistros();
+    if(cantReg == -1)return false;
 
-        posy += 7;
-        cantArtListados++;
+    reg = new Bebida[cantReg];
+    _archivoBebidas.leerTodos(reg,cantReg);
+
+    Cuadro cuadro(filas,col,posy,posx);
+
+    cuadro.agregarColumna("ID",6,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("Nombre",14,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("COSTO",10,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("PRECIO",10,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("VAR",6,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("VOLUMEN",10,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("% ALC",8,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("STOCK",8,rlutil::COLOR::GREEN);
+    cuadro.agregarDivisiones();
+
+    for(int i=0; i<cantReg; i++){
+        if(reg[i].getEstado() == false) continue;
+
+        cuadro.escribirFila(reg[i].getLetrayNroID(),0);
+        cuadro.escribirFila(reg[i].getNombre(),1);
+        cuadro.escribirFila(reg[i].getCosto(),2);
+        cuadro.escribirFila(reg[i].getPrecioInicial(),3);
+        cuadro.escribirFila(reg[i].getVariacion(),4);
+        cuadro.escribirFila(reg[i].getVolumen(),5);
+        cuadro.escribirFila(reg[i].getGraduacionAlcoholica(),6);
+        cuadro.escribirFila(std::to_string(reg[i].getStock()),7);
+
+        if(!cuadro.saltoFila()) break;
     }
 
 
-    rlutil::anykey();
-    terminal.pintarRectangulo(34,2,27,84);
+    delete [] reg;
+
+ return true;
+}
+
+bool ProductoManager::ListarComidas(){
+    Comida *reg;
+
+    int posx = 35;
+    int posy = 5;
+    int filas = 25;
+    int col = 8;
+
+    int cantReg = _archivoBebidas.contarRegistros();
+    if(cantReg == -1)return false;
+
+    reg = new Comida[cantReg];
+    _archivoComidas.leerTodos(reg,cantReg);
+
+    Cuadro cuadro(filas,col,posy,posx);
+
+    cuadro.agregarColumna("ID",6,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("Nombre",14,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("COSTO",10,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("PRECIO",10,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("VAR",6,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("Observ",10,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("Guarn",8,rlutil::COLOR::GREEN);
+    cuadro.agregarColumna("STOCK",8,rlutil::COLOR::GREEN);
+    cuadro.agregarDivisiones();
+
+    fflush(stdin);
+
+    for(int i=0; i<cantReg; i++){
+        if(reg[i].getEstado() == false) continue;
+
+        cuadro.escribirFila(reg[i].getLetrayNroID(),0);
+        cuadro.escribirFila(reg[i].getNombre(),1);
+        cuadro.escribirFila(reg[i].getCosto(),2);
+        cuadro.escribirFila(reg[i].getPrecioInicial(),3);
+        cuadro.escribirFila(reg[i].getVariacion(),4);
+        cuadro.escribirFila(reg[i].getObservacion(),5);
+        cuadro.escribirFila(reg[i].getGuarnicion(),6);
+        cuadro.escribirFila(std::to_string(reg[i].getStock()),7);
+
+        if(!cuadro.saltoFila()) break;
+    }
+
+    fflush(stdin);
+
+    delete [] reg;
+
+ return true;
 }
 
 void ProductoManager::AltaProd(){
@@ -107,7 +194,9 @@ bool ProductoManager::IngresoProdBebida(){
 
     OPC SELECT = OPC::OPCION_NULL;
 
-    std::string nombre,costo,precio,variacion,volumen,gradAlcohol,stock;
+    std::string nombre;
+    float costo,precio,variacion,volumen,gradAlcohol;
+    int stock;
 
     fflush(stdin);
 
@@ -124,16 +213,16 @@ bool ProductoManager::IngresoProdBebida(){
     terminal.crearBoton("AGREGAR OTRO",62,25,SELECT == OPC::OPCION2);
     terminal.crearBoton("CANCELAR",89,25,SELECT == OPC::OPCION3);
 
-    /**Tomar el valor de ID del archivo*/
-    terminal.mostrarTexto("8AB23",posx+25,posy);
+    terminal.mostrarTexto("B",posx+25,posy);
+    terminal.mostrarTexto(_archivoBebidas.getNuevoID(),posx+26,posy);
 
     nombre = terminal.ingresarTexto(posx+25,posy+2,true);
-    costo = terminal.ingresarTexto(posx+25,posy+4,true);
-    precio = terminal.ingresarTexto(posx+25,posy+6,true);
-    variacion = terminal.ingresarTexto(posx+25,posy+8,true);
-    volumen = terminal.ingresarTexto(posx+25,posy+10,true);
-    gradAlcohol = terminal.ingresarTexto(posx+25,posy+12,true);
-    stock = terminal.ingresarTexto(posx+25,posy+14,true);
+    costo = strToInt(terminal.ingresarTexto(posx+25,posy+4,true));
+    precio = strToInt(terminal.ingresarTexto(posx+25,posy+6,true));
+    variacion = strToInt(terminal.ingresarTexto(posx+25,posy+8,true));
+    volumen = strToInt(terminal.ingresarTexto(posx+25,posy+10,true));
+    gradAlcohol = strToInt(terminal.ingresarTexto(posx+25,posy+12,true));
+    stock = strToInt(terminal.ingresarTexto(posx+25,posy+14,true));
 
     fflush(stdin);
 
@@ -162,13 +251,9 @@ bool ProductoManager::IngresoProdBebida(){
         case 1:
             if(SELECT == OPC::OPCION3) return false;
 
-
-            /**     Ejemplo:
-
-            ArchivoManager arch;
-            arch.grabarRegistro(nombre,precio, guarn);
-
-            */
+            if(CrearBebida(nombre,stock,costo,precio,variacion,volumen,gradAlcohol)){
+                    //generar un mensaje en pantalla
+            }
 
             if(SELECT == OPC::OPCION1)return false;
 
@@ -186,7 +271,9 @@ bool ProductoManager::IngresoProdComida(){
 
     OPC SELECT = OPC::OPCION_NULL;
 
-    std::string nombre,observacion,guarnicion, costo,precio,variacion, stock;
+    std::string nombre,observacion,guarnicion;
+    float costo,precio,variacion;
+    int stock;
 
     fflush(stdin);
     terminal.mostrarTexto("ID:.....................",posx,posy);
@@ -202,15 +289,16 @@ bool ProductoManager::IngresoProdComida(){
     terminal.crearBoton("AGREGAR OTRO",62,25,SELECT == OPC::OPCION2);
     terminal.crearBoton("CANCELAR",89,25,SELECT == OPC::OPCION3);
 
-    terminal.mostrarTexto("8CE23",posx+25,posy);
+    terminal.mostrarTexto("C",posx+25,posy);
+    terminal.mostrarTexto(_archivoComidas.getNuevoID(),posx+26,posy);
 
     nombre = terminal.ingresarTexto(posx+25,posy+2,true);
-    costo = terminal.ingresarTexto(posx+25,posy+4,true);
-    precio = terminal.ingresarTexto(posx+25,posy+6,true);
-    variacion = terminal.ingresarTexto(posx+25,posy+8,true);
+    costo = strToInt(terminal.ingresarTexto(posx+25,posy+4,true));
+    precio = strToInt(terminal.ingresarTexto(posx+25,posy+6,true));
+    variacion = strToInt(terminal.ingresarTexto(posx+25,posy+8,true));
     observacion = terminal.ingresarTexto(posx+25,posy+10,true);
     guarnicion = terminal.ingresarTexto(posx+25,posy+12,true);
-    stock = terminal.ingresarTexto(posx+25,posy+14,true);
+    stock = strToInt(terminal.ingresarTexto(posx+25,posy+14,true));
 
     fflush(stdin);
 
@@ -236,16 +324,9 @@ bool ProductoManager::IngresoProdComida(){
         case 1:
             if(SELECT == OPC::OPCION3) return false;
 
-            /**     Ejemplo:
-
-            1- Abrir archivo
-            2- grabar el registro
-
-            ArchivoArticulo arch;
-
-            flag = arch.grabarRegistro(Articulo(id,nombre,costo,precio,stock,true));
-            if(!flag) exit(223);
-            */
+            if(CrearComida(nombre,stock,costo,precio,variacion,observacion,guarnicion)){
+                //generar mensaje en pantalla
+            }
 
             if(SELECT == OPC::OPCION1)return false;
 
@@ -261,44 +342,30 @@ void ProductoManager::BajaProd(){
     OPC SELECT = OPC::OPCION_NULL;
 
     std::string id;
-    int posReg = 1;
+    char letraID;
     int posx = 35;
-    int posy = 8;
-    bool status = false;
+    int posy = 5;
+    bool status;
 
-    terminal.mostrarTexto("Ingrese el ID del producto:",posx,5);
+    terminal.mostrarTexto("Ingrese el ID del producto:",posx,3,true);
     terminal.crearBoton("ELIMINAR",35,25,SELECT == OPC::OPCION1);
     terminal.crearBoton("CANCELAR",65,25,SELECT == OPC::OPCION2);
 
-    id = terminal.ingresarTexto(65,5,true);
-    /** Ingreso de numero de ID a buscar:
-        posReg = arch.buscarIndice(id); */
+    id = terminal.ingresarTexto(65,3,true);
+    letraID = id[0];
 
-    if(posReg == -1){
-        terminal.mostrarTexto("NO SE ENCOTRO EL ARCHIVO....",40,10);
+    if(letraID == 'C' || letraID =='c') status = MostrarProdComida(strToInt(id));
+    if(letraID == 'B' || letraID =='b')status = MostrarProdBebida(strToInt(id));
+
+    if(!status){
+        terminal.mostrarTexto("NO SE ENCOTRO EL PRODUCTO....",40,10);
         rlutil::anykey();
         terminal.pintarRectangulo(34,2,27,80);
         return;
     }
 
-    /** Busco Registro en el archivo:
-        reg = arch.buscarRegistro(posReg); */
-
-    terminal.mostrarTexto("ID:...............",posx,posy);
-    //terminal.mostrarTexto(reg.getId(),posx+20,posy);
-    terminal.mostrarTexto("Nombre:...........",posx,posy+2);
-    //terminal.mostrarTexto(reg.getNombre(),posx+20,posy+1);
-    terminal.mostrarTexto("Costo:...........$",posx,posy+4);
-    //terminal.mostrarTexto(reg.getCosto(),posx+20,posy+2);
-    terminal.mostrarTexto("Precio:..........$",posx,posy+6);
-    //terminal.mostrarTexto(reg.getPrecio(),posx+20,posy+3);
-    terminal.mostrarTexto("Stock:............",posx,posy+8);
-    //terminal.mostrarTexto(reg.getStock(),posx+20,posy+4);
-    terminal.mostrarTexto("Estado:...........",posx,posy+10);
-    //terminal.mostrarTexto((reg.getEstado() == true ? "true":"false"),posx+20,posy+5);
-
     rlutil::setBackgroundColor(rlutil::COLOR::RED);
-    terminal.mostrarTexto(" ESTA SEGURO QUE DESEA DAR DE BAJA ESTE ARTICULO? ",posx,posy+14);
+    terminal.mostrarTexto(" ESTA SEGURO QUE DESEA DAR DE BAJA ESTE ARTICULO? ",posx,posy+18);
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
 
     SELECT = OPC::OPCION1;
@@ -319,15 +386,12 @@ void ProductoManager::BajaProd(){
 
             if(SELECT == OPC::OPCION2)return;
 
-            /**     Cambiar el estado del registro para hacer la baja logica
-            reg.setEstado(false);
-            status = arch.modificacionRegistro(reg,posReg);*/
+            status = EliminarProducto(id);
+            terminal.pintarHorizontal(posx,50,posy+18);
 
-            terminal.pintarHorizontal(posx,50,posy+14);
-
-            if(!status) terminal.mostrarTexto("Eliminacion Exitosa",posx,posy+14);
+            if(status) terminal.mostrarTexto("Eliminacion Exitosa",posx,posy+18);
             else{
-                terminal.mostrarTexto("Fallo durantela el borrado del archivo",posx,posy+14);
+                terminal.mostrarTexto("Fallo durantela el borrado del archivo",posx,posy+18);
             }
 
             rlutil::anykey();
@@ -337,31 +401,104 @@ void ProductoManager::BajaProd(){
     }
 }
 
+bool ProductoManager::MostrarProdBebida(int nroID){
+    Terminal terminal;
+    Bebida bebida;
+
+    int posx = 35;
+    int posy = 5;
+    int index = _archivoBebidas.buscarRegistro(nroID);
+
+    if(index == -1)return false;
+
+    bebida = _archivoBebidas.leerRegistro(index);
+
+    terminal.mostrarTexto("ID:...............",posx,posy);
+    terminal.mostrarTexto(bebida.getLetrayNroID(),posx+20,posy);
+    terminal.mostrarTexto("Nombre:...........",posx,posy+2);
+    terminal.mostrarTexto(bebida.getNombre(),posx+20,posy+2);
+    terminal.mostrarTexto("Costo:...........$",posx,posy+4);
+    terminal.mostrarTexto(bebida.getCosto(),posx+20,posy+4);
+    terminal.mostrarTexto("Precio:..........$",posx,posy+6);
+    terminal.mostrarTexto(bebida.getPrecioInicial(),posx+20,posy+6);
+    terminal.mostrarTexto("Variacion:.......$",posx,posy+8);
+    terminal.mostrarTexto(bebida.getVariacion(),posx+20,posy+8);
+    terminal.mostrarTexto("Volumen:........ml",posx,posy+10);
+    terminal.mostrarTexto(bebida.getVolumen(),posx+20,posy+10);
+    terminal.mostrarTexto("Grad Alcohol:....%",posx,posy+12);
+    terminal.mostrarTexto(bebida.getGraduacionAlcoholica(),posx+20,posy+12);
+    terminal.mostrarTexto("Stock:............",posx,posy+14);
+    terminal.mostrarTexto(bebida.getStock(),posx+20,posy+14);
+    terminal.mostrarTexto("Estado:...........",posx,posy+16);
+    terminal.mostrarTexto((bebida.getEstado() == true ? "habilitado":"deshabilitado"),posx+20,posy+16);
+
+    return true;
+}
+
+bool ProductoManager::MostrarProdComida(int nroID){
+    Terminal terminal;
+    Comida comida;
+
+    int posx = 35;
+    int posy = 5;
+    int index = _archivoComidas.buscarRegistro(nroID);
+
+    if(index == -1)return false;
+
+    comida = _archivoComidas.leerRegistro(index);
+
+    terminal.mostrarTexto("ID:...............",posx,posy);
+    terminal.mostrarTexto(comida.getLetrayNroID(),posx+20,posy);
+    terminal.mostrarTexto("Nombre:...........",posx,posy+2);
+    terminal.mostrarTexto(comida.getNombre(),posx+20,posy+2);
+    terminal.mostrarTexto("Costo:...........$",posx,posy+4);
+    terminal.mostrarTexto(comida.getCosto(),posx+20,posy+4);
+    terminal.mostrarTexto("Precio:..........$",posx,posy+6);
+    terminal.mostrarTexto(comida.getPrecioInicial(),posx+20,posy+6);
+    terminal.mostrarTexto("Variacion:.......$",posx,posy+8);
+    terminal.mostrarTexto(comida.getVariacion(),posx+20,posy+8);
+    terminal.mostrarTexto("Observacion:......",posx,posy+10);
+    terminal.mostrarTexto(comida.getObservacion(),posx+20,posy+10);
+    terminal.mostrarTexto("Guarnicion:.......",posx,posy+12);
+    terminal.mostrarTexto(comida.getGuarnicion(),posx+20,posy+12);
+    terminal.mostrarTexto("Stock:............",posx,posy+14);
+    terminal.mostrarTexto(comida.getStock(),posx+20,posy+14);
+    terminal.mostrarTexto("Estado:...........",posx,posy+16);
+    terminal.mostrarTexto((comida.getEstado() == true ? "habilitado":"deshabilitado"),posx+20,posy+16);
+
+    return true;
+}
+
 void ProductoManager::ModStock(){
     Terminal terminal;
     OPC SELECT = OPC::OPCION_NULL;
 
-    std::string id, nuevoPrecio;
-    int posReg = 1;
+    std::string id;
+    char letraID;
+    int stock;
     int posx = 35;
-    int posy = 8;
+    int posy = 5;
+    bool status;
 
-    terminal.mostrarTexto("Ingrese el ID del producto:",posx,5);
+    terminal.mostrarTexto("Ingrese el ID del producto:",posx,3,true);
     terminal.crearBoton("GUARDAR",35,25,SELECT == OPC::OPCION1);
     terminal.crearBoton("CANCELAR",65,25,SELECT == OPC::OPCION2);
 
-    id = terminal.ingresarTexto(65,5,true);
+    id = terminal.ingresarTexto(65,3,true);
+    letraID = id[0];
 
-    terminal.mostrarTexto("ID:...............",posx,posy);
-    terminal.mostrarTexto(id,posx+20,posy);                     /// --> provisorio, debe buscar en archivo;
-    terminal.mostrarTexto("Nombre:...........",posx,posy+2);
-    terminal.mostrarTexto("Costo:...........$",posx,posy+4);
-    terminal.mostrarTexto("Precio:..........$",posx,posy+6);
-    terminal.mostrarTexto("Stock:............",posx,posy+8);
-    terminal.mostrarTexto("Estado:...........",posx,posy+10);
+    if(letraID == 'C' || letraID =='c') status = MostrarProdComida(strToInt(id));
+    if(letraID == 'B' || letraID =='b')status = MostrarProdBebida(strToInt(id));
 
-    terminal.mostrarTexto("Ingrese el nuevo monto deseado: ",posx,posy+14,true);
-    nuevoPrecio = terminal.ingresarTexto(posx+33,posy+14,true);
+    if(!status){
+        terminal.mostrarTexto("NO SE ENCOTRO EL PRODUCTO....",40,10);
+        rlutil::anykey();
+        terminal.pintarRectangulo(34,2,27,80);
+        return;
+    }
+
+    terminal.mostrarTexto("Ingrese el nuevo monto deseado: ",posx,posy+18,true);
+    stock = strToInt(terminal.ingresarTexto(posx+33,posy+18,true));
 
     SELECT = OPC::OPCION1;
 
@@ -381,14 +518,12 @@ void ProductoManager::ModStock(){
 
             if(SELECT == OPC::OPCION2)return;
 
-            /**RAELIZAR CAMBIOS EN EL ARCHIVO CORRESPONDIENTE*/
+            status = ModificarStock(id,stock);
+            terminal.pintarHorizontal(posx,50,posy+18);
 
-            terminal.pintarHorizontal(posx,50,posy+14);
-            bool status = false;
-
-            if(!status) terminal.mostrarTexto("Modificacion Exitosa",posx,posy+14,true);
+            if(status) terminal.mostrarTexto("Modificacion Exitosa",posx,posy+18,true);
             else{
-                terminal.mostrarTexto("Fallo durantela la modificacion del archivo",posx,posy+14,true);
+                terminal.mostrarTexto("Fallo durantela la modificacion del archivo",posx,posy+18,true);
             }
 
             rlutil::anykey();
@@ -401,27 +536,32 @@ void ProductoManager::ModPrecio(){
     Terminal terminal;
     OPC SELECT = OPC::OPCION_NULL;
 
-    std::string id, nuevoStock;
-    int posReg = 1;
+    std::string id;
+    char letraID;
+    float precio;
     int posx = 35;
-    int posy = 8;
+    int posy = 5;
+    bool status;
 
-    terminal.mostrarTexto("Ingrese el ID del producto:",posx,5);
+    terminal.mostrarTexto("Ingrese el ID del producto:",posx,3,true);
     terminal.crearBoton("GUARDAR",35,25,SELECT == OPC::OPCION1);
     terminal.crearBoton("CANCELAR",65,25,SELECT == OPC::OPCION2);
 
-    id = terminal.ingresarTexto(65,5,true);
+    id = terminal.ingresarTexto(65,3,true);
+    letraID = id[0];
 
-    terminal.mostrarTexto("ID:...............",posx,posy);
-    terminal.mostrarTexto(id,posx+20,posy);                     /// --> provisorio, debe buscar en archivo;
-    terminal.mostrarTexto("Nombre:...........",posx,posy+2);
-    terminal.mostrarTexto("Costo:...........$",posx,posy+4);
-    terminal.mostrarTexto("Precio:..........$",posx,posy+6);
-    terminal.mostrarTexto("Stock:............",posx,posy+8);
-    terminal.mostrarTexto("Estado:...........",posx,posy+10);
+    if(letraID == 'C' || letraID =='c') status = MostrarProdComida(strToInt(id));
+    if(letraID == 'B' || letraID =='b')status = MostrarProdBebida(strToInt(id));
 
-    terminal.mostrarTexto("Ingrese el nuevo stock deseado: ",posx,posy+14,true);
-    nuevoStock = terminal.ingresarTexto(posx+33,posy+14,true);
+    if(!status){
+        terminal.mostrarTexto("NO SE ENCOTRO EL PRODUCTO....",40,10);
+        rlutil::anykey();
+        terminal.pintarRectangulo(34,2,27,80);
+        return;
+    }
+
+    terminal.mostrarTexto("Ingrese el nuevo monto deseado: ",posx,posy+18,true);
+    precio = strToInt(terminal.ingresarTexto(posx+33,posy+18,true));
 
     SELECT = OPC::OPCION1;
 
@@ -441,18 +581,163 @@ void ProductoManager::ModPrecio(){
 
             if(SELECT == OPC::OPCION2)return;
 
-            /**RAELIZAR CAMBIOS EN EL ARCHIVO CORRESPONDIENTE*/
+            status = ModificarPrecio(id,precio);
+            terminal.pintarHorizontal(posx,50,posy+18);
 
-            terminal.pintarHorizontal(posx,50,posy+14);
-            bool status = false;
-
-            if(!status) terminal.mostrarTexto("Modificacion Exitosa",posx,posy+14,true);
+            if(status) terminal.mostrarTexto("Modificacion Exitosa",posx,posy+18,true);
             else{
-                terminal.mostrarTexto("Fallo durantela la modificacion del archivo",posx,posy+14,true);
+                terminal.mostrarTexto("Fallo durantela la modificacion del archivo",posx,posy+18,true);
             }
 
             rlutil::anykey();
             return;
         }
     }
+}
+
+float ProductoManager::strToInt(std::string numero){
+    char* aux;
+    float nuevoNum = 0;
+    bool flag = false;
+    int contDec = 0;
+
+    aux = new char[strlen(numero.c_str())];
+    strcpy(aux,numero.c_str());
+
+    for(int i=0; i<strlen(numero.c_str()); i++){
+
+        if(aux[i] < 48 || aux[i] > 57){
+
+            if(aux[i] == 46){
+                flag = true;
+                continue;
+            }
+            else continue;
+        }
+
+        if(flag)contDec++;
+        nuevoNum *= 10;
+        nuevoNum += static_cast<float>(aux[i]) - 48;
+    }
+
+    if(flag) nuevoNum /= pow(10,contDec);
+
+    delete []aux;
+
+    return nuevoNum;
+}
+
+bool ProductoManager::CrearBebida(std::string nombre, int stock, float costo, float precio, float var, float volum, float grad ){
+    int nroID;
+
+    nroID = _archivoBebidas.getNuevoID();
+
+    if(_archivoBebidas.grabarRegistro(Bebida('B',nroID,nombre,stock,costo,precio,var,true,volum,grad))) return true;
+
+    return false;
+}
+
+bool ProductoManager::CrearComida(std::string nombre, int stock, float costo, float precio, float var, std::string observ, std::string guarn ){
+    int nroID;
+
+    nroID = _archivoComidas.getNuevoID();
+
+    if(_archivoComidas.grabarRegistro(Comida('C',nroID,nombre,stock,costo,precio,var,true,observ,guarn))) return true;
+
+    return false;
+}
+
+bool ProductoManager::EliminarProducto(std::string id){
+    char letraID = id[0];
+    int index;
+    int nroID = strToInt(id);
+    Comida comida;
+    Bebida bebida;
+
+    if(letraID == 'C' || letraID =='c'){
+        index = _archivoComidas.buscarRegistro(nroID);
+        if(index == -1) return false;
+
+        comida = _archivoComidas.leerRegistro(index);
+        comida.setEstado(false);
+
+        return _archivoComidas.modificarRegistro(comida, index);
+    }
+
+
+    if(letraID == 'B' || letraID =='b'){
+        index = _archivoBebidas.buscarRegistro(nroID);
+        if(index == -1) return false;
+
+        bebida = _archivoBebidas.leerRegistro(index);
+        bebida.setEstado(false);
+
+        return _archivoBebidas.modificarRegistro(bebida, index);
+    }
+
+    return false;
+}
+
+bool ProductoManager::ModificarPrecio(std::string id, float precio){
+    char letraID = id[0];
+    int nroID = strToInt(id);
+    int index;
+    Comida comida;
+    Bebida bebida;
+
+    if(letraID == 'C' || letraID =='c'){
+
+        index = _archivoComidas.buscarRegistro(nroID);
+        if(index == -1) return false;
+
+        comida = _archivoComidas.leerRegistro(index);
+        comida.setPrecioInicial(precio);
+
+        return _archivoComidas.modificarRegistro(comida, index);
+    }
+
+
+    if(letraID == 'B' || letraID =='b'){
+        index = _archivoBebidas.buscarRegistro(nroID);
+        if(index == -1) return false;
+
+        bebida = _archivoBebidas.leerRegistro(index);
+        bebida.setPrecioInicial(precio);
+
+        return _archivoBebidas.modificarRegistro(bebida, index);
+    }
+
+    return false;
+}
+
+bool ProductoManager::ModificarStock(std::string id, int stock){
+    char letraID = id[0];
+    int nroID = strToInt(id);
+    int index;
+    Comida comida;
+    Bebida bebida;
+
+    if(letraID == 'C' || letraID =='c'){
+
+        index = _archivoComidas.buscarRegistro(nroID);
+        if(index == -1) return false;
+
+        comida = _archivoComidas.leerRegistro(index);
+        comida.setStock(stock);
+
+        return _archivoComidas.modificarRegistro(comida, index);
+    }
+
+
+    if(letraID == 'B' || letraID =='b'){
+        index = _archivoBebidas.buscarRegistro(nroID);
+        if(index == -1) return false;
+
+        bebida = _archivoBebidas.leerRegistro(index);
+        bebida.setStock(stock);
+
+        return _archivoBebidas.modificarRegistro(bebida, index);
+    }
+
+    return false;
 }

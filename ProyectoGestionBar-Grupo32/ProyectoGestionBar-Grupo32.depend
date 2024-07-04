@@ -194,38 +194,50 @@
 	<iostream>
 	"Usuario.h"
 
-1719843354 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\productomanager.h
+1720065966 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\productomanager.h
 	"Terminal.h"
+	"Bebida.h"
+	"Comida.h"
+	"ArchivoBebida.h"
+	"ArchivoComida.h"
 
 1719843354 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\menuoptions.h
 	<iostream>
 
-1719843354 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\cuadro.h
+1720064831 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\cuadro.h
 	<iostream>
 	"Terminal.h"
 
 1719843354 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivousuario.cpp
 	"ArchivoUsuario.h"
 
-1719843354 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\cuadro.cpp
+1720067338 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\cuadro.cpp
 	"cuadro.h"
 	<cstring>
+	<iomanip>
+	<sstream>
+	<string>
 
 1719843354 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\fecha.cpp
 	"Fecha.h"
 	<ctime>
 
-1719843354 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\main.cpp
+1720066043 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\main.cpp
 	<iostream>
 	"appManager.h"
+	"ProductoManager.h"
+	"menuOptions.h"
+	"cuadro.h"
 
 1719843354 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\persona.cpp
 	"Persona.h"
 	<cstring>
 
-1719843354 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\productomanager.cpp
+1720067056 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\productomanager.cpp
 	"ProductoManager.h"
 	"menuOptions.h"
+	"cuadro.h"
+	<cmath>
 
 1719843354 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\terminal.cpp
 	"Terminal.h"
@@ -240,4 +252,46 @@
 	"menuOptions.h"
 	"cuadro.h"
 	<cmath>
+
+1720060677 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivocomida.cpp
+	"ArchivoComida.h"
+	<iostream>
+	<cstring>
+
+1720060626 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivocomida.h
+	<iostream>
+	"comida.h"
+
+1720047793 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\comida.h
+	<iostream>
+	"Articulo.h"
+
+1720060259 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\articulo.h
+	<iostream>
+
+1720060619 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivobebida.cpp
+	<iostream>
+	"ArchivoBebida.h"
+	<cstring>
+
+1720060603 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\archivobebida.h
+	"bebida.h"
+
+1720047793 c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\bebida.h
+	<iostream>
+	"Articulo.h"
+
+1720060257 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\articulo.cpp
+	"Articulo.h"
+	<cstring>
+
+1720067024 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\bebida.cpp
+	<iostream>
+	<cstring>
+	"Articulo.h"
+	"Bebida.h"
+
+1720060294 source:c:\users\bbarrera\documents\github\laboratorio-ii-gestion-de-bar\proyectogestionbar-grupo32\comida.cpp
+	"Comida.h"
+	<cstring>
 

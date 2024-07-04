@@ -1,5 +1,8 @@
 #include "cuadro.h"
 #include <cstring>
+#include <iomanip>
+#include <sstream>
+#include <string>
 
 
 Cuadro::Cuadro(int filas, int columnas, int posyIni, int posxIni){
@@ -40,7 +43,7 @@ std::string Cuadro::ajustarTexto(std::string texto, int tam){
     char* nuevaCad;
     nuevaCad = new char[tam];
     strncpy(nuevaCad,texto.c_str(),tam-1);
-
+    nuevaCad[tam-1] = '\0';
     std::string cadena = nuevaCad;
     delete [] nuevaCad;
 
@@ -69,6 +72,27 @@ void Cuadro::agregarColumna(std::string nombre, int anchoCol, rlutil::COLOR cBac
 }
 
 void Cuadro::escribirFila(std::string texto, int col, rlutil::COLOR cText){
+
+    if(col >= colCargadas)return;
+
+    int anchoCol = posColum[col+1] - posColum[col];
+
+    rlutil::setColor(cText);
+
+    if(filaAct < maxFila){
+        centrarTexto(filaAct,col,anchoCol,texto);
+    }
+    fflush(stdin);
+
+    rlutil::setColor(rlutil::COLOR::WHITE);
+}
+
+void Cuadro::escribirFila(float numero, int col, rlutil::COLOR cText){
+    std::ostringstream stream;
+    stream << std::fixed << std::setprecision(1) << numero;
+    std::string texto = stream.str();
+
+    fflush(stdin);
 
     if(col >= colCargadas)return;
 

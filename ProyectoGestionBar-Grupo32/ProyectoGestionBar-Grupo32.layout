@@ -2,35 +2,27 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="cuadro.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Bebida.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1292" topLine="0" />
+			<Cursor1 position="137" topLine="0" />
 		</Cursor>
 		<Folding>
-			<Collapse line="4" />
-			<Collapse line="23" />
-			<Collapse line="28" />
-			<Collapse line="38" />
+			<Collapse line="8" />
+			<Collapse line="13" />
+			<Collapse line="15" />
+			<Collapse line="20" />
+			<Collapse line="24" />
+			<Collapse line="31" />
+			<Collapse line="35" />
 		</Folding>
 	</File>
-	<File name="Fecha.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="AppManager.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="376" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="cuadro.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="583" topLine="6" />
-		</Cursor>
-	</File>
-	<File name="AppManager.cpp" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="15540" topLine="6" />
+			<Cursor1 position="3288" topLine="0" />
 		</Cursor>
 		<Folding>
 			<Collapse line="5" />
 			<Collapse line="60" />
-			<Collapse line="105" />
 			<Collapse line="122" />
 			<Collapse line="146" />
 			<Collapse line="216" />
@@ -44,17 +36,12 @@
 			<Collapse line="455" />
 		</Folding>
 	</File>
-	<File name="Usuario.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Articulo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="774" topLine="0" />
+			<Cursor1 position="54" topLine="0" />
 		</Cursor>
-		<Folding>
-			<Collapse line="4" />
-			<Collapse line="12" />
-			<Collapse line="21" />
-		</Folding>
 	</File>
-	<File name="Terminal.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Terminal.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="325" topLine="0" />
 		</Cursor>
@@ -74,73 +61,53 @@
 			<Collapse line="158" />
 		</Folding>
 	</File>
-	<File name="Fecha.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="633" topLine="2" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="9" />
-			<Collapse line="15" />
-			<Collapse line="21" />
-			<Collapse line="26" />
-			<Collapse line="38" />
-			<Collapse line="48" />
-		</Folding>
-	</File>
-	<File name="AppManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="145" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="ArchivoUsuario.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="533" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="2" />
-			<Collapse line="6" />
-			<Collapse line="32" />
-			<Collapse line="54" />
-		</Folding>
-	</File>
-	<File name="Terminal.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="104" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="52" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="UsuarioManager.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="UsuarioManager.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="150" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="UsuarioManager.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="12739" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="5" />
-			<Collapse line="61" />
-			<Collapse line="159" />
-			<Collapse line="239" />
-			<Collapse line="346" />
-			<Collapse line="378" />
-		</Folding>
-	</File>
-	<File name="ArchivoUsuario.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="284" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Persona.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="213" topLine="0" />
 		</Cursor>
+	</File>
+	<File name="ProductoManager.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="485" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="168" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Comida.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="85" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ArchivoBebida.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="161" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="cuadro.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="821" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="ArchivoBebida.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1697" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="19" />
+			<Collapse line="36" />
+			<Collapse line="47" />
+			<Collapse line="61" />
+			<Collapse line="81" />
+		</Folding>
 	</File>
 	<File name="Persona.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
@@ -153,9 +120,145 @@
 			<Collapse line="20" />
 		</Folding>
 	</File>
+	<File name="Comida.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="19" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ArchivoUsuario.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="351" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ArchivoComida.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="134" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="AppManager.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="145" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Terminal.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="104" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Fecha.cpp" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="633" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="9" />
+			<Collapse line="15" />
+			<Collapse line="21" />
+			<Collapse line="26" />
+			<Collapse line="38" />
+			<Collapse line="48" />
+		</Folding>
+	</File>
+	<File name="Articulo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="21" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="UsuarioManager.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1928" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="61" />
+			<Collapse line="159" />
+			<Collapse line="239" />
+			<Collapse line="346" />
+			<Collapse line="378" />
+		</Folding>
+	</File>
+	<File name="Usuario.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="774" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="4" />
+			<Collapse line="12" />
+			<Collapse line="21" />
+		</Folding>
+	</File>
+	<File name="ProductoManager.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="125" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="150" />
+			<Collapse line="267" />
+			<Collapse line="339" />
+			<Collapse line="403" />
+			<Collapse line="437" />
+			<Collapse line="471" />
+			<Collapse line="534" />
+			<Collapse line="639" />
+			<Collapse line="649" />
+			<Collapse line="680" />
+			<Collapse line="712" />
+		</Folding>
+	</File>
 	<File name="Usuario.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="585" topLine="0" />
 		</Cursor>
+	</File>
+	<File name="Fecha.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="376" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ArchivoUsuario.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="94" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="6" />
+			<Collapse line="20" />
+			<Collapse line="32" />
+			<Collapse line="54" />
+			<Collapse line="66" />
+			<Collapse line="79" />
+			<Collapse line="88" />
+		</Folding>
+	</File>
+	<File name="ArchivoComida.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1743" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="10" />
+			<Collapse line="20" />
+			<Collapse line="37" />
+			<Collapse line="48" />
+			<Collapse line="62" />
+			<Collapse line="72" />
+			<Collapse line="82" />
+		</Folding>
+	</File>
+	<File name="cuadro.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1149" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="7" />
+			<Collapse line="26" />
+			<Collapse line="31" />
+			<Collapse line="41" />
+			<Collapse line="58" />
+			<Collapse line="73" />
+			<Collapse line="89" />
+			<Collapse line="109" />
+			<Collapse line="118" />
+			<Collapse line="128" />
+			<Collapse line="138" />
+			<Collapse line="148" />
+		</Folding>
 	</File>
 </CodeBlocks_layout_file>

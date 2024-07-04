@@ -1,18 +1,15 @@
 #include <iostream>
-#include <cstring>
-#include "Funciones.h"
 #include "ArchivoBebida.h"
-#include "Bebida.h"
-using namespace std;
+#include <cstring>
 
-ArchivoBebida::ArchivoBebida(const char* n)
+ArchivoBebida::ArchivoBebida(std::string n)
 {
-    strcpy(nombre,n);
+    _direccion += n;
 }
 
 bool ArchivoBebida::grabarRegistro(Bebida obj){
     FILE *p;
-    p=fopen(nombre, "ab");
+    p=fopen(_direccion.c_str(), "ab");
     if(p==NULL) return false;
     bool escribio=fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
@@ -23,7 +20,7 @@ bool ArchivoBebida::grabarRegistro(Bebida obj){
 int ArchivoBebida::buscarRegistro(int id){
     FILE *p;
     Bebida obj;
-    p=fopen(nombre, "rb");
+    p=fopen(_direccion.c_str(), "rb");
     int pos=0;
     if(p==NULL) return -1;
     while(fread(&obj, sizeof obj, 1, p)==1){
@@ -40,17 +37,18 @@ int ArchivoBebida::buscarRegistro(int id){
 Bebida ArchivoBebida::leerRegistro(int pos){
     FILE *p;
     Bebida obj;
-    p=fopen(nombre, "rb");
+    p=fopen(_direccion.c_str(), "rb");
     if(p==NULL) return obj;
     fseek(p, pos*sizeof obj,0);///función que permite ubicarse dentro del archivo
     fread(&obj, sizeof obj, 1, p);
     fclose(p);
     return obj;
 }
+
 void ArchivoBebida::leerTodos(Bebida registros[], int cantidad){
    FILE *pFile;
 
-   pFile = fopen(nombre, "rb");
+   pFile = fopen(_direccion.c_str(), "rb");
 
    if(pFile == nullptr){
       return;
@@ -63,7 +61,7 @@ void ArchivoBebida::leerTodos(Bebida registros[], int cantidad){
 
 bool ArchivoBebida::modificarRegistro(Bebida obj, int pos){
     FILE *p;
-    p=fopen(nombre, "rb+"); ///agrega al modo de apertura lo que le falta
+    p=fopen(_direccion.c_str(), "rb+"); ///agrega al modo de apertura lo que le falta
     if(p==NULL) return false;
     fseek(p, pos*sizeof obj,0);///función que permite ubicarse dentro del archivo
     bool escribio=fwrite(&obj, sizeof obj, 1, p);
@@ -73,7 +71,7 @@ bool ArchivoBebida::modificarRegistro(Bebida obj, int pos){
 
 int ArchivoBebida::contarRegistros(){
     FILE *p;
-    p=fopen(nombre, "rb");
+    p=fopen(_direccion.c_str(), "rb");
     if(p==NULL) return -1;
     fseek(p, 0,2);///función que permite ubicarse dentro del archivo, en este caso lo ubiqué al final EOF
     int tam=ftell(p);///me devuelve la cantidad de bytes que hay desde el principio del archivo a la posición actual del indicador de pFILE.
