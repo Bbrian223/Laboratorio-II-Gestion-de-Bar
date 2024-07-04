@@ -12,6 +12,7 @@
 #include "ArchivoBebida.h"
 #include "ArchivoVenta.h"
 #include "ArchivoUsuario.h"
+#include "Venta.h"
 
 void AppManager::login(){
     std::string user, pass;
@@ -216,8 +217,12 @@ void AppManager::Ventas(){
                 venta.setPrecioActual( precioTotal );
                 venta.setIdVenta( idVenta );
                 venta.setLegajo( usuario.getLegajo() );
+
+
             }
 
+            if( producto.at(0) == 'c' || producto.at(0) == 'C') ActualizarComida(art.getNroID());
+            if( producto.at(0) == 'b' || producto.at(0) == 'B') ActualizarBebida(art.getNroID());
 
             rlutil::hidecursor();
             ingreso = true;
@@ -246,6 +251,10 @@ void AppManager::Ventas(){
                 terminal.pintarRectangulo(4,2,25,27);
                 return;
             }
+
+            //if( producto.at(0) == 'c' || producto.at(0) == 'C') ActualizarComida(art.getNroID());
+            //if( producto.at(0) == 'b' || producto.at(0) == 'B') ActualizarBebida(art.getNroID());
+
             terminal.pintarRectangulo(20,y+6,4,12);
 
             if(SELECT == OPC::OPCION1){
@@ -266,6 +275,11 @@ void AppManager::Ventas(){
 void AppManager::Historial(){
     Terminal terminal;
     OPC SELECT = OPC::OPCION1;
+    Venta *reg;
+    int posx = 35;
+    int posy = 6;
+    int filas = 24;
+    int col = 7;
     char arriba[2] = {(char)30,'\0'};
     char abajo[2] = {(char)31,'\0'};
     std::ostringstream oss;
@@ -275,54 +289,83 @@ void AppManager::Historial(){
 
     while(true){
 
-        terminal.crearBotonVertical(arriba,112,8,SELECT == OPC::OPCION1);
-        terminal.crearBotonVertical(abajo,112,14,SELECT == OPC::OPCION2);
-
-        terminal.crearBoton("Hoy",33,1,SELECT == OPC::OPCION3);
-        terminal.crearBoton("Ultimos 15 dias",61,1,SELECT == OPC::OPCION4);
-        terminal.crearBoton("Ultimos 30 dias",89,1,SELECT == OPC::OPCION5);
+        terminal.crearBoton("Ver historial",80,1,SELECT == OPC::OPCION1);
+        terminal.crearBoton("Volver",40,1,SELECT == OPC::OPCION2);
 
         switch(rlutil::getkey()){
-        case 14:        //arriba
+        case 17:        //arriba
             SELECT = OPC::OPCION1;
             break;
-        case 15:
+        case 16:
             SELECT = OPC::OPCION2;
             break;
-        case 17:
-            if(SELECT < OPC::OPCION3) SELECT = OPC::OPCION5;
-            else{
-                MenuOption::siguienteOpcion(SELECT);
-                if(SELECT > OPC::OPCION5) SELECT = OPC::OPCION5;
-            }
-            break;
-        case 16:
-            if(SELECT < OPC::OPCION3) SELECT = OPC::OPCION3;
-            else{
-                MenuOption::anteriorOpcion(SELECT);
-                if(SELECT < OPC::OPCION3) SELECT = OPC::OPCION3;
-            }
 
-            break;
         case 1:
             ///funcionamiento de los botones
 
-            if(SELECT == OPC::OPCION3){
+            if(SELECT == OPC::OPCION1){
+
+
                int cantVentas = ArchivoVenta().contarRegistros();
+               if(cantVentas == -1){
+                    terminal.mostrarTexto("No se encontraron Ventas cargadas...",posx,posy);
+                    rlutil::anykey();
+                    return;
+                }
+
+                reg = new Venta[ArchivoVenta().contarRegistros()];
+                ArchivoVenta().ObtenerTodosReg(reg);
+
+                Cuadro cuadro(filas,col,posy,posx);
+
+                cuadro.agregarColumna("ID",10,rlutil::COLOR::GREEN);
+                cuadro.agregarColumna("Fecha",10,rlutil::COLOR::GREEN);
+                cuadro.agregarColumna("Precio",12,rlutil::COLOR::GREEN);
+                cuadro.agregarColumna("Cantidad",12,rlutil::COLOR::GREEN);
+                cuadro.agregarColumna("Articulo",12,rlutil::COLOR::GREEN);
+                cuadro.agregarColumna("Legajo",10,rlutil::COLOR::GREEN);
+                cuadro.agregarColumna("Usuario",12,rlutil::COLOR::GREEN);
+                cuadro.agregarDivisiones();
+
+                for(int i=0; i<cantVentas; i++){
+                    if(reg[i].getEstado() == false) continue;
+
+                    if( i == 0)
+                    {
+                        cuadro.escribirFila(std::to_string(reg[i].getIdVenta()),0);
+                        cuadro.escribirFila(reg[i].getFechaVenta().toString(),1);
+                        cuadro.escribirFila(reg[i].getPrecioActual(),2);
+                        cuadro.escribirFila(reg[i].getCantidad(),3);
+                        cuadro.escribirFila(reg[i].getArticulo().getNombre(),4);
+                        cuadro.escribirFila(reg[i].getUser().getLegajo(),5);
+                        cuadro.escribirFila(reg[i].getUser().getApellido(),6);
+                    }else if( reg[i].getIdVenta() == reg[i-1].getIdVenta()){
+                        cuadro.escribirFila(reg[i].getPrecioActual(),2);
+                        cuadro.escribirFila(reg[i].getCantidad(),3);
+                        cuadro.escribirFila(reg[i].getArticulo().getNombre(),4);
+                    }else{
+
+                        cuadro.escribirFila(std::to_string(reg[i].getIdVenta()),0);
+                        cuadro.escribirFila(reg[i].getFechaVenta().toString(),1);
+                        cuadro.escribirFila(reg[i].getPrecioActual(),2);
+                        cuadro.escribirFila(reg[i].getCantidad(),3);
+                        cuadro.escribirFila(reg[i].getArticulo().getNombre(),4);
+                        cuadro.escribirFila(reg[i].getUser().getLegajo(),5);
+                        cuadro.escribirFila(reg[i].getUser().getApellido(),6);
+                    }
 
 
-               ///Muestro todas las ventas
-               for( int i = 0; i < cantVentas; i++)
-               {
-                    venta = ArchivoVenta().leerRegistro(i);
-                    oss << "ID Venta: " << venta.getIdVenta() << " Articulo: "<<venta.getArticulo().getNombre();
-                    terminal.mostrarTexto(oss.str(),33,i+5);
-                    oss.clear();
-               }
+                    if(!cuadro.saltoFila()) break;
+                }
 
 
             }
 
+            if(SELECT == OPC::OPCION2){
+                terminal.pintarRectangulo(34,2,27,84);
+                return;
+                break;
+            }
 
             break;
         case 0:
@@ -332,6 +375,7 @@ void AppManager::Historial(){
             break;
         }
     }
+
 }
 
 void AppManager::Config(){
@@ -720,25 +764,12 @@ void AppManager::Reportes(){
 
 void AppManager::TablaPrecios(){
 
-   /*****************Datos de prueba**************************/
-    std::string bebidas[10]={
-        "Whisky","Cerveza","Vinos",
-        "Espumantes","Vodka","Ron",
-        "Aperitivos","Tragos",
-        "Cocteles","Comida"
-    };
-
-    int elem[10] = {3,5,4,6,7,2,8,5,8,5};
-    int tam = 10;                           //editar con mem dinamica
-
-    /**********************************************************/
-
     int filas = 27;
-    int col = 6;
+    int col = 3;
     int x = 35;
     int y = 3;
+    int cantReg;
 
-    bool status = false;
     Terminal terminal;
     rlutil::COLOR indicador;
 
@@ -748,52 +779,64 @@ void AppManager::TablaPrecios(){
     terminal.pintarRectangulo(33,2,27,85);
 
     Cuadro cuadro(filas,col,y,x);
-
-    fflush(stdin);
-    fflush(stdin);
+    Cuadro cuadroComida(filas,col,y,x+43);
 
     cuadro.agregarColumna("Bebida",13,rlutil::COLOR::LIGHTRED);
     cuadro.agregarColumna("%Osc",13,rlutil::COLOR::LIGHTRED);
     cuadro.agregarColumna("PreUlt",13,rlutil::COLOR::LIGHTRED);
-    cuadro.agregarColumna("Bebida",13,rlutil::COLOR::LIGHTRED);
-    cuadro.agregarColumna("%Osc",13,rlutil::COLOR::LIGHTRED);
-    cuadro.agregarColumna("PreUlt",13,rlutil::COLOR::LIGHTRED);
+
+    cuadroComida.agregarColumna("Comida",13,rlutil::COLOR::LIGHTRED);
+    cuadroComida.agregarColumna("%Osc",13,rlutil::COLOR::LIGHTRED);
+    cuadroComida.agregarColumna("PreUlt",13,rlutil::COLOR::LIGHTRED);
 
     cuadro.saltoFila();
 
-    for(int j=0; j<tam; j++){
+    ArchivoBebida arch;
+    Bebida* bebida;
+    cantReg = arch.contarRegistros();
+    if(cantReg == -1) return; //poner debajo de las col
 
-        terminal.pintarRectangulo(cuadro.getPosColum(),cuadro.getPosFila(),0,36,rlutil::COLOR::LIGHTBLUE);
-        rlutil::setBackgroundColor(rlutil::COLOR::LIGHTBLUE);
-        cuadro.escribirFila(bebidas[j],cuadro.getColActual());
-        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-        cuadro.saltoFila();
-        cuadro.saltoFila();
+    bebida = new Bebida[cantReg];
+    arch.leerTodos(bebida,cantReg);
 
-        for(int i=0; i<elem[j]; i++){
+    for(int i=0; i<cantReg; i++){
 
-            if(status)indicador = rlutil::COLOR::GREEN;
-            else indicador = rlutil::COLOR::RED;
+        if(bebida[i].getEstadoVar() == true)indicador = rlutil::COLOR::GREEN;
+        else indicador = rlutil::COLOR::RED;
 
-            cuadro.escribirFila(bebidas[j],cuadro.getColActual());
-            cuadro.escribirFila((status == 1 ? alta : baja)+"1.25",cuadro.getColActual() + 1, indicador);
-            cuadro.escribirFila("$125.5",cuadro.getColActual() + 2);
+        cuadro.escribirFila(bebida[i].getNombre(),cuadro.getColActual());
+        cuadro.escribirFila((indicador == rlutil::COLOR::GREEN ? alta : baja)+"     ",cuadro.getColActual() + 1, indicador);
+        cuadro.escribirFila(bebida[i].getVariacion(),cuadro.getColActual() + 1, indicador);
+        cuadro.escribirFila(bebida[i].getPrecioAct(),cuadro.getColActual() + 2);
 
-            status = !status;
-
-            if(!cuadro.saltoFila()){
-                if(!cuadro.saltoColum(cuadro.getColActual()+3)) break;
-                else cuadro.saltoFila();
-            }
-        }
-
-        if(!cuadro.saltoFila()){
-            if(!cuadro.saltoColum(cuadro.getColActual()+3)) break;
-        }
+        if(!cuadro.saltoFila()) break;
     }
 
-    fflush(stdin);
-    fflush(stdin);
+    ArchivoComida archC;
+    Comida* comida;
+    cantReg = archC.contarRegistros();
+    if(cantReg == -1) return; //poner debajo de las col
+
+    comida = new Comida[cantReg];
+    archC.leerTodos(comida,cantReg);
+
+    cuadroComida.saltoFila();
+
+    for(int j=0; j<cantReg; j++){
+
+        if(comida[j].getEstadoVar() == true)indicador = rlutil::COLOR::GREEN;
+        else indicador = rlutil::COLOR::RED;
+
+        cuadroComida.escribirFila(comida[j].getNombre(),cuadroComida.getColActual());
+        cuadroComida.escribirFila((indicador == rlutil::COLOR::GREEN ? alta : baja)+"     ",cuadroComida.getColActual() + 1, indicador);
+        cuadroComida.escribirFila(comida[j].getVariacion(),cuadroComida.getColActual() + 1, indicador);
+        cuadroComida.escribirFila(comida[j].getPrecioAct(),cuadroComida.getColActual() + 2);
+
+        if(!cuadroComida.saltoFila()) break;
+    }
+
+    delete [] bebida;
+    delete [] comida;
 }
 
 Articulo AppManager::buscarComida( std::string comidaID)
@@ -891,3 +934,56 @@ float AppManager::strToInt(std::string numero){
 
     return nuevoNum;
 }
+
+void AppManager::ActualizarBebida(int id){
+    ArchivoBebida arch;
+    Bebida *bebida;
+
+    int cantReg = arch.contarRegistros();
+
+    bebida = new Bebida[cantReg];
+
+    arch.leerTodos(bebida,cantReg);
+
+    for(int i=0; i<cantReg; i++){
+
+        if(bebida[i].getNroID() == id) bebida[i].setEstadoVar(true);
+        else{
+            bebida[i].setEstadoVar(false);
+        }
+
+        bebida[i].modificarPrecio();
+
+        if(!arch.modificarRegistro(bebida[i],i)) exit(22);
+    }
+
+    delete [] bebida;
+}
+
+void AppManager::ActualizarComida(int id){
+    ArchivoComida arch;
+    Comida *comida;
+
+    int cantReg = arch.contarRegistros();
+
+    comida = new Comida[cantReg];
+
+    arch.leerTodos(comida,cantReg);
+
+    for(int i=0; i<cantReg; i++){
+
+        if(comida[i].getNroID() == id) comida[i].setEstadoVar(true);
+        else{
+            comida[i].setEstadoVar(false);
+        }
+
+        comida[i].modificarPrecio();
+
+        arch.modificarRegistro(comida[i],i);
+    }
+
+    delete [] comida;
+}
+
+
+

@@ -50,5 +50,16 @@ bool ArchivoVenta::modificarRegistro(Venta obj, int pos){
     return escribio;
 }
 
+void ArchivoVenta::ObtenerTodosReg(Venta* reg){
+    FILE* pFile;
+    int cantReg = ArchivoVenta().contarRegistros();
+
+    pFile = fopen(_direccion.c_str(),"rb");
+    if(pFile == nullptr) exit(13);
+
+    fseek(pFile,0,SEEK_SET);
+    fread(reg,sizeof(Venta),cantReg,pFile);
+    fclose(pFile);
+}
 
 

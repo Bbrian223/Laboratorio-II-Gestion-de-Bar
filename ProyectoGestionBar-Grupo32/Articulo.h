@@ -37,6 +37,12 @@ class Articulo
 
         std::string getLetrayNroID();
 
+        float getPrecioAct();
+        void modificarPrecio();
+
+        bool getEstadoVar();
+        void setEstadoVar(bool estado);
+
     protected:
         char _letraID;
         int _nroID;
@@ -44,7 +50,9 @@ class Articulo
         int _stock;
         float _costo;
         float _precio_inicial;
+        float _precio_act;
         float _variacion;
+        bool _estadoVar;
         bool _estado;
 };
 

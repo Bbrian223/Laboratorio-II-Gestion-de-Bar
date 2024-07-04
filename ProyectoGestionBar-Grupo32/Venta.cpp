@@ -2,6 +2,22 @@
 #include <cstring>
 #include "Venta.h"
 
+
+Venta::Venta(){
+
+    setIdVenta     ( -1 );
+    setLegajo      ( -1 );
+    setFechaVenta  ( Fecha());
+    setHora        ( Horario() );
+    setPrecioActual( -1);
+    setCantidad    ( -1 );
+    setArticulo    ( Articulo() );
+    setUser        ( Usuario() );
+    setEstado      ( true );
+
+
+}
+
 Venta::Venta( Usuario user){
 
     setIdVenta     ( -1 );

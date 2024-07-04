@@ -32,6 +32,8 @@ private:
 
     Articulo buscarComida(std::string comidaID);
     Articulo buscarBebida(std::string bebidaID);
+    void ActualizarBebida(int id);
+    void ActualizarComida(int id);
     float strToInt(std::string numero);
     /************************************************/
 

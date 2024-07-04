@@ -1,5 +1,3 @@
-#ifndef VENTA_H_INCLUDED
-#define VENTA_H_INCLUDED
 #pragma once
 #include <string>
 #include "Articulo.h"
@@ -22,6 +20,7 @@ class Venta{
 
 
     public:
+        Venta();
         Venta(Usuario user);
         Venta(int id_venta, int id_legajo, Fecha fecha_venta, Horario hora_venta, float precio_actual, int cantidad, Articulo reg, Usuario user, bool estado);
         void setIdVenta     ( int id_venta );
@@ -47,5 +46,3 @@ class Venta{
 };
 
 
-
-#endif // VENTA_H_INCLUDED

@@ -1,5 +1,3 @@
-#ifndef ARCHIVOVENTA_H_INCLUDED
-#define ARCHIVOVENTA_H_INCLUDED
 #pragma once
 #include<iostream>
 #include<cstdlib>
@@ -23,6 +21,6 @@ class ArchivoVenta{
         bool modificarRegistro(Venta obj, int pos);
 
         int buscarRegistro(int num);
-};
 
-#endif // ARCHIVOVENTA_H_INCLUDED
+        void ObtenerTodosReg(Venta* reg);
+};

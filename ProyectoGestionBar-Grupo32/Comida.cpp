@@ -13,7 +13,7 @@ Comida::Comida()
 
 Comida::Comida(char letraID, int nroID, std::string nombre, int stock, float costo, float precio_inicial, float variacion, bool estado,
                std::string observacion, std::string guarnicion)
-    : Articulo( letraID, nroID, nombre, precio_inicial, costo, stock, variacion, estado )
+    : Articulo( letraID, nroID, nombre, stock, costo, precio_inicial, variacion, estado )
 {
     strcpy(_observacion, observacion.c_str());
     strcpy(_guarnicion, guarnicion.c_str());

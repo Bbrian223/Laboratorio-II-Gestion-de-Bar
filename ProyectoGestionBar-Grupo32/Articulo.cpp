@@ -9,8 +9,10 @@ Articulo::Articulo(){
     _stock = 0;
     _costo = 0.0;
     _precio_inicial = 0.0;
+    _precio_act = 0.0;
     _variacion = 0.0 ;
     _estado = false;
+    _estadoVar = true;
 }
 
 Articulo::Articulo(char letraID, int nroID, std::string nombre, int stock, float costo, float precio_inicial, float variacion, bool estado)
@@ -23,7 +25,7 @@ Articulo::Articulo(char letraID, int nroID, std::string nombre, int stock, float
     setPrecioInicial( precio_inicial );
     setVariacion( variacion );
     setEstado( estado );
-
+    _estadoVar = true;
 }
 char Articulo::getLetraID(){
     return _letraID;
@@ -69,6 +71,7 @@ void Articulo::setPrecioInicial( float precio_inicial )
     precio_inicial = 0;
     }
     _precio_inicial = precio_inicial;
+    _precio_act = precio_inicial;
 }
 
 
@@ -118,5 +121,22 @@ std::string Articulo::getLetrayNroID(){
 
 }
 
+float Articulo::getPrecioAct(){ return _precio_act;}
 
+void Articulo::modificarPrecio(){
+    float maximo = _precio_inicial;
+    float minimo = _precio_inicial;
+
+    maximo += _precio_inicial * _variacion;
+    minimo -= _precio_inicial * _variacion;
+
+    if(_estadoVar == true) _precio_act += 5;
+    if(_estadoVar == false) _precio_act -= 5;
+}
+
+bool Articulo::getEstadoVar(){ return _estadoVar;}
+
+void Articulo::setEstadoVar(bool estado){
+    _estadoVar = estado;
+}
 
